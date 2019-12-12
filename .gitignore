@@ -1,0 +1,8 @@
+# Mac os specific files:
+.DS_Store
+.DS_Store?
+._* .Trashes
+ehthumbs.db
+Thumbs.db
+
+*.log
