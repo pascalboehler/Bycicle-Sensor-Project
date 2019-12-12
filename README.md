@@ -11,9 +11,8 @@ Our sensor works with one ultra sonic sensor which can by mounted on your bike. 
 If you like to help us achieving our mission, to make the world a saver place, you can just take one of the existing GitHub Issues.
 
 ### Here are some further informations:
-* Issues made for beginners are marked with the Tag "Beginners"
-* If you need to contact us you can send us an email to: email.email[at]provider.de
-* Please read our wiki and stick to our code of conduct
+* If you need to contact us you can send us an email to: email.email[at]provider.de!
+* Stick to our code of conduct!
 
 ## About the program this project is created at:
 The Digitechnikum is a project founded by the Polytechnische Gesellschaft Frankfurt. The project tries to empower young people like us, to create projects thats help to improve our society, with the power of creating code and using modern technologies.
