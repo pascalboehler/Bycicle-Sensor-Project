@@ -5,7 +5,7 @@
 Our mission is to make the streets of our city a safer place. We try to achieve this aim by creating and deploying a distance warning sensor for bikers.
 
 ## How does the sensor works?
-Our sensor works with one ultra sonic sensor which can by mounted on your bike. If a car comes to near than the in german allowed 1,5 meters, we will give you an acoustic and visual warning, that informs you about the dangerous situation.
+Our sensor works with one ultra sonic sensor which can by mounted on your bike. If a car comes nearer than 1,5 meters (the minimal distance allowed in germany), we will give you an acoustic and visual warning, that will inform you about the dangerous situation.
 
 ## How can you contribute?
 If you like to help us achieving our mission, to make the world a saver place, you can just take one of the existing GitHub Issues.
