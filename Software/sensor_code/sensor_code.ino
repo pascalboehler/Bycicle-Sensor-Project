@@ -33,10 +33,10 @@ void loop() {
   duration = pulseIn(echo, HIGH); // check how long needs to come back
   distance = (duration/2) * 0.03432; // calc distance (duration / 2) * aircoupling speed
   if (distance >= 500 || distance <= 0) {
-    Serial.println("Error no values found!");
+    Serial.println("Error no values found!"); // debug message
   }
   else {
-    Serial.println(distance + " cm");
+    Serial.println(distance + " cm"); // debug message
     playSoundAndLight(distance);
   }
   //delay(10);
