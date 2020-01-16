@@ -7,13 +7,11 @@ int piezoPin = 8;
 // Sensor HC SR04
 int echo = 5;
 int trigger = 6;
+// led
 int led = 11;
+// vars
 long duration = 0;
 long distance = 0;
-
-
-// Programm Abstandsmesser einfügen
-// TODO: Move to func
 
 void setup() {
   // Piezo Setup:
@@ -27,21 +25,18 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(trigger, LOW);
-  delay(5);
-  digitalWrite(trigger, HIGH);
-  delay(10); //Dieser „Ton“ erklingt für 10 Millisekunden.
-  digitalWrite(trigger, LOW);//Dann wird der „Ton“ abgeschaltet.
-  duration = pulseIn(echo, HIGH); //Mit dem Befehl „pulseIn“ zählt der Mikrokontroller die Zeit in Mikrosekunden, bis der Schall zum Ultraschallsensor zurückkehrt.
-  distance = (duration/2) * 0.03432; //Nun berechnet man die Entfernung in Zentimetern. Man teilt zunächst die Zeit durch zwei (Weil man ja nur eine Strecke berechnen möchte und nicht die Strecke hin- und zurück). Den Wert multipliziert man mit der Schallgeschwindigkeit in der Einheit Zentimeter/Mikrosekunde und erhält dann den Wert in Zentimetern.
-  if (distance >= 500 || distance <= 0)
-  {
-    Serial.println("Kein Messwert");
+  digitalWrite(trigger, LOW); // nullen
+  delay(5); // wait 5 millisecs
+  digitalWrite(trigger, HIGH); // send "tone"
+  delay(10); // wait for 10 secs (tone plays)
+  digitalWrite(trigger, LOW); // stop tone
+  duration = pulseIn(echo, HIGH); // check how long needs to come back
+  distance = (duration/2) * 0.03432; // calc distance (duration / 2) * aircoupling speed
+  if (distance >= 500 || distance <= 0) {
+    Serial.println("Error no values found!");
   }
-  else
-  {
-    Serial.print(distance);
-    Serial.println(" cm");
+  else {
+    Serial.println(distance + " cm");
     playSoundAndLight(distance);
   }
   //delay(10);
