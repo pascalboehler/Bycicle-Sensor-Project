@@ -2,7 +2,6 @@
   Created by Laura
   Date created: 16.01.2020
 */
-#include "pitches.h"
 
 int Abstand = 0;
 int piezoPin = 8;
@@ -12,15 +11,18 @@ int piezoPin = 8;
 
 void setup() {
   pinMode(piezoPin, OUTPUT);
+  
 }
 
 void loop() {
-  playSound(Abstand);
+  for(int i = 500; i > 250; i--) {
+    playSound(Abstand);
+  }
 }
 
 void playSound(int distance) {
-  if (Abstand <= 300) {
-    tone (piezoPin, NOTE_C5);
+  if (Abstand <= 150) {
+    tone (piezoPin, 800);
     delay (Abstand * 3);
     noTone (piezoPin);
     delay (Abstand * 3);
