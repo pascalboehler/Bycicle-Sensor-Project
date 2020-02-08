@@ -1,277 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Digi.svg">
-  <defs
-     id="defs2">
-    <linearGradient
-       id="linearGradient6167"
-       osb:paint="solid">
-      <stop
-         style="stop-color:#292d7b;stop-opacity:1;"
-         offset="0"
-         id="stop6165" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient6013"
-       osb:paint="solid">
-      <stop
-         style="stop-color:#ffb400;stop-opacity:1;"
-         offset="0"
-         id="stop6011" />
-    </linearGradient>
-    <marker
-       inkscape:stockid="DotL"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="DotL"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         id="path4667"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(7.4, 1)" />
-    </marker>
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3755"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3747"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3743"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-  </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.79"
-     inkscape:cx="464.86947"
-     inkscape:cy="575.03592"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:snap-page="true"
-     inkscape:snap-grids="true"
-     inkscape:snap-to-guides="false"
-     inkscape:snap-nodes="false"
-     inkscape:snap-global="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="961"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="Ebene 2">
-    <rect
-       style="fill:#ffb401;fill-opacity:1;stroke:#9a9a9a;stroke-width:0.10665246;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect6039"
-       width="141.33377"
-       height="29.86364"
-       x="23.221523"
-       y="196.88731" />
-    <rect
-       style="fill:#ffb400;fill-opacity:1;stroke:none;stroke-width:1.47623885;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4613"
-       width="12.1058"
-       height="6.9228883"
-       x="56.684845"
-       y="125.86472"
-       inkscape:transform-center-y="1.9995161" />
-  </g>
-  <g
-     inkscape:label="Ebene 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       transform="matrix(0.94815986,-0.31779377,0.29376299,0.95587829,0,0)"
-       y="139.23048"
-       x="76.694107"
-       height="75.491859"
-       width="6.3582125"
-       id="rect4600"
-       style="fill:#000000;stroke-width:0.08817486;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers fill stroke" />
-    <path
-       style="fill:#000000;stroke-width:0.10000001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill"
-       d="m 102.26406,109.28293 c 0.99861,0.61963 5.9853,0.45269 10.03039,0.50543 4.24997,0.0554 6.1166,-0.7969 6.1166,-0.7969 0,0 2.58581,2.14359 1.46596,-1.68109 -0.72241,-2.46727 -5.07765,-1.96142 -9.14545,-1.98037 -3.98853,-0.0186 -6.46434,-0.10085 -7.69414,0.29794 -1.07166,0.34751 -2.10729,1.29926 -2.05726,1.8026 0.13002,1.30796 0.41113,1.31079 1.2839,1.85234 z"
-       id="rect4602"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cscsssssc" />
-    <path
-       style="fill:#000000;stroke-width:0.10000001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill"
-       d="m 80.060664,121.04942 c 0.954377,0.64303 0.635696,2.70697 -1.868747,4.01778 -2.526596,1.3224 -3.995761,1.88915 -7.665536,2.45377 -3.669776,0.56463 -6.388793,0.64572 -9.011093,0.11208 -2.514179,-0.51165 -4.600846,-1.70041 -4.775846,-2.83782 -0.174998,-1.1374 0.748369,-3.49639 3.055661,-4.82142 2.133968,-1.2255 6.383538,1.39871 10.346371,1.45939 7.503344,0.11488 8.248376,-1.50951 9.91919,-0.38378 z"
-       id="path4899"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ssssssss" />
-    <ellipse
-       style="fill:#000000;stroke-width:0.1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill"
-       id="path4902"
-       cx="50.077854"
-       cy="176.33047"
-       rx="4.8267813"
-       ry="5.4301291" />
-    <ellipse
-       ry="5.4301291"
-       rx="4.8267813"
-       cy="175.72713"
-       cx="137.56326"
-       id="ellipse4904"
-       style="fill:#000000;stroke-width:0.1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill" />
-    <ellipse
-       id="path4583"
-       style="fill:none;stroke:#000000;stroke-width:6.56500006;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       cx="49.190582"
-       cy="176.3645"
-       r="22.558352" />
-    <circle
-       r="22.558352"
-       cy="176.36415"
-       cx="137.09755"
-       style="fill:none;stroke:#000000;stroke-width:6.56500006;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle4585" />
-    <path
-       id="circle4591"
-       style="fill:none;stroke:#ffb401;stroke-width:0.7554462;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       sodipodi:type="arc"
-       sodipodi:cx="112.84828"
-       sodipodi:cy="98.792847"
-       sodipodi:rx="32.553425"
-       sodipodi:ry="32.553425"
-       sodipodi:start="3.1267932"
-       sodipodi:end="4.717742"
-       d="m 80.298422,99.274602 a 32.553425,32.553425 0 0 1 9.422647,-23.391524 32.553425,32.553425 0 0 1 23.301471,-9.64319"
-       sodipodi:open="true" />
-    <path
-       style="fill:none;stroke:#ffb401;stroke-width:1.075279;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle4593"
-       sodipodi:type="arc"
-       sodipodi:cx="113.6888"
-       sodipodi:cy="98.365479"
-       sodipodi:rx="46.335556"
-       sodipodi:ry="46.335556"
-       sodipodi:start="3.1321013"
-       sodipodi:end="4.7089368"
-       sodipodi:open="true"
-       d="M 67.355328,98.805259 A 46.335556,46.335556 0 0 1 80.713257,65.814019 46.335556,46.335556 0 0 1 113.52884,52.030199" />
-    <path
-       d="M 51.915233,99.643329 A 63.253914,63.298592 0 0 1 70.150501,54.57429 63.253914,63.298592 0 0 1 114.94793,35.744335"
-       sodipodi:open="true"
-       sodipodi:end="4.7089368"
-       sodipodi:start="3.1321013"
-       sodipodi:ry="63.298592"
-       sodipodi:rx="63.253914"
-       sodipodi:cy="99.042549"
-       sodipodi:cx="115.1663"
-       sodipodi:type="arc"
-       id="path4597"
-       style="fill:none;fill-opacity:1;stroke:#ffb400;stroke-width:1.46841073;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <path
-       style="fill:none;stroke:#ffb401;stroke-width:0.76499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path4603"
-       sodipodi:type="arc"
-       sodipodi:cx="113.47606"
-       sodipodi:cy="98.152733"
-       sodipodi:rx="19.652279"
-       sodipodi:ry="19.652279"
-       sodipodi:start="3.1171231"
-       sodipodi:end="4.6861741"
-       sodipodi:open="true"
-       d="M 93.829663,98.633567 A 19.652279,19.652279 0 0 1 112.96094,78.507206" />
-    <circle
-       style="fill:#ffb401;fill-opacity:1;stroke:#ffb401;stroke-width:0.76499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path4611"
-       cx="109.46108"
-       cy="95.828278"
-       r="1.2678889" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot6017"
-       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif Bold Italic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.26458333,0,0,0.26458333,17.702764,-8.8601266)"><flowRegion
-         id="flowRegion6019"
-         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif Bold Italic'"><rect
-           id="rect6021"
-           width="476.00748"
-           height="159.73405"
-           x="137.37128"
-           y="791.87018"
-           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif Bold Italic'" /></flowRegion><flowPara
-         id="flowPara6023"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:74.66666412px;font-family:'Berlin Sans FB Demi';-inkscape-font-specification:'Berlin Sans FB Demi'">DigiRoad</flowPara></flowRoot>    <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:5.69480658;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 72.655347,134.26859 c 13.777521,-0.32226 40.983813,0.40854 47.125963,0.43518 l -20.027318,39.19783 -45.232448,-0.418 z"
-       id="rect6067"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:5.00183445;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect6070"
-       width="0.22604716"
-       height="52.469387"
-       x="-14.588404"
-       y="144.31078"
-       transform="matrix(0.80508987,-0.59315285,0.56188997,0.82721198,0,0)" />
-    <circle
-       id="circle37"
-       style="fill:none;stroke:#000000;stroke-width:6.56500006;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       cx="50.019489"
-       cy="176.36415"
-       r="22.558352" />
-  </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 596 842" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g id="Ebene-2" serif:id="Ebene 2">
+        <rect id="rect6039" x="65.825" y="558.106" width="400.631" height="84.653" style="fill:rgb(255,180,1);stroke:rgb(154,154,154);stroke-width:0.3px;"/>
+        <g transform="matrix(1,0,0,1,27.258,-3.99709)">
+            <text x="86.693px" y="627.897px" style="font-family:'Arial-Black', 'Arial Black', sans-serif;font-weight:900;font-size:64.751px;">DigiR<tspan x="272.063px 315.251px " y="627.897px 627.897px ">oa</tspan>d</text>
+        </g>
+        <rect id="rect4613" x="160.681" y="356.782" width="34.316" height="19.624" style="fill:rgb(255,180,0);"/>
+    </g>
+    <g id="Ebene-1" serif:id="Ebene 1">
+        <g id="rect4600" transform="matrix(0.94816,-0.317794,0.293763,0.955878,0,0)">
+            <rect x="217.401" y="394.669" width="18.023" height="213.993"/>
+        </g>
+        <path id="rect4602" d="M289.882,309.778C292.713,311.535 306.849,311.062 318.315,311.211C330.362,311.368 335.653,308.952 335.653,308.952C335.653,308.952 342.983,315.028 339.809,304.187C337.761,297.193 325.416,298.627 313.885,298.573C302.579,298.521 295.561,298.287 292.075,299.418C289.037,300.403 286.101,303.101 286.243,304.528C286.612,308.235 287.408,308.243 289.882,309.778L289.882,309.778Z" style="fill-rule:nonzero;"/>
+        <path id="path4899" d="M226.944,343.132C229.649,344.955 228.746,350.806 221.646,354.521C214.484,358.27 210.32,359.876 199.917,361.477C189.515,363.077 181.807,363.307 174.374,361.794C167.247,360.344 161.332,356.974 160.836,353.75C160.34,350.526 162.958,343.839 169.498,340.083C175.547,336.609 187.593,344.048 198.826,344.22C220.096,344.546 222.207,339.941 226.944,343.132Z" style="fill-rule:nonzero;"/>
+        <ellipse id="path4902" cx="141.953" cy="499.834" rx="13.682" ry="15.392"/>
+        <ellipse id="ellipse4904" cx="389.943" cy="498.124" rx="13.682" ry="15.392"/>
+        <path id="path4583" d="M139.438,499.931Z" style="fill:none;stroke:black;stroke-width:18.61px;"/>
+        <circle id="circle4585" cx="388.623" cy="499.93" r="63.945" style="fill:none;stroke:black;stroke-width:18.61px;"/>
+        <path id="circle4591" d="M227.618,281.408C227.251,256.625 236.884,232.71 254.327,215.102C271.771,197.493 295.593,187.634 320.379,187.767" style="fill:none;fill-rule:nonzero;stroke:rgb(255,180,1);stroke-width:2.14px;"/>
+        <path id="circle4593" d="M190.928,280.078C190.597,245.121 204.234,211.438 228.793,186.559C253.352,161.68 286.856,147.608 321.814,147.487" style="fill:none;fill-rule:nonzero;stroke:rgb(255,180,1);stroke-width:3.05px;"/>
+        <path id="path4597" d="M147.161,282.454C146.708,234.699 165.326,188.686 198.852,154.699C232.378,120.712 278.114,101.487 325.837,101.323" style="fill:none;fill-rule:nonzero;stroke:rgb(255,180,0);stroke-width:4.16px;"/>
+        <path id="path4603" d="M265.974,279.591C265.227,249.077 289.691,223.34 320.204,222.54" style="fill:none;fill-rule:nonzero;stroke:rgb(255,180,1);stroke-width:2.17px;"/>
+        <circle id="path4611" cx="310.283" cy="271.639" r="3.594" style="fill:rgb(255,180,1);stroke:rgb(255,180,1);stroke-width:2.17px;"/>
+        <path id="rect6067" d="M205.952,380.604C245.007,379.69 322.127,381.762 339.538,381.837L282.767,492.949L154.549,491.765L205.952,380.604Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:16.14px;"/>
+        <g id="rect6070" transform="matrix(0.80509,-0.593153,0.56189,0.827212,0,0)">
+            <rect x="-41.353" y="409.07" width="0.641" height="148.732" style="fill:none;stroke:black;stroke-width:14.18px;"/>
+        </g>
+        <circle id="circle37" cx="141.788" cy="499.93" r="63.945" style="fill:none;stroke:black;stroke-width:18.61px;"/>
+    </g>
 </svg>
