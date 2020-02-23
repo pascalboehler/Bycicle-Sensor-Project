@@ -8,14 +8,30 @@ class DigiRoad extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "DigiRoad",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("DigiRoad"),
-        ),
-        body: Center(
-          child: Text("Hallo Welt"),
-        ),
+      home: HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatefulWidget {
+  @override
+  HomeViewState createState() => HomeViewState();
+
+}
+
+class HomeViewState extends State<HomeView> {
+  bool isConnected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Center(
+        child: isConnected ? Text("Connected") : Text("Connect to an device"),
       )
     );
   }
+  
 }
