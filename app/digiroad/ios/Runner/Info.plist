@@ -41,5 +41,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>DigiRoad needs access to bluetooth to connect to your device</string>
 </dict>
 </plist>
