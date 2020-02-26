@@ -1,16 +1,13 @@
-# digiroad
+# DigiRoad App
 
-A new Flutter project.
+This small application displays all the data send over bluetooth from the DigiRoad Bike Sensor!
+The app is written 100% in flutter and help is appreciated!
 
-## Getting Started
+## Screenshots:
 
-This project is a starting point for a Flutter application.
+## Get started with developement!
+To get started just clone this repo with for example Android Studio (or anything similar with flutter installed).
+To find an Issue that needs help, just check out the @TODO / @FIXME marks (yellow in android studio) or the GitHub Issues.
+But before you start contributing, please read our CONTRIBUTING Guidelines and our CODE_OF_CONDUCT!
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
