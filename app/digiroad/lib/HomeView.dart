@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import './BackgroundCollectingTask.dart';
+import './SelectBondedDevicePage.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -23,6 +23,8 @@ class _HomeViewState extends State<HomeView> {
   BackgroundCollectingTask _collectingTask;
 
   bool _autoAcceptPairingRequest = false;
+
+  bool _isMeasuring = false;
 
   @override
   void initState() {
@@ -70,14 +72,73 @@ class _HomeViewState extends State<HomeView> {
           title: Text("Home"),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.sync),
+              icon: _isMeasuring ? Icon(Icons.pause) : Icon(Icons.play_arrow),
+              onPressed: () async {
+                print('Hallo Welt!');
+                if (!_isMeasuring) {
+                  final BluetoothDevice selDevice = await Navigator.of(context)
+                      .push(
+                      MaterialPageRoute(builder: (context) {
+                        return SelectBondedDevicePage(checkAvailability: false);
+                      })
+                  );
+
+                  if (selDevice != null) {
+                    print("Connected to device!");
+                    await _startMeasuring(context, selDevice);
+                    if (_collectingTask != null) {
+                      setState(() {
+                        _isMeasuring = true;
+                      });
+                    }
+                  }
+                  else {
+                    print('Error while bonding device, you may need to enable bluetooth!');
+                  }
+                } else {
+                  await _stopMeasuring();
+                  setState(() {
+                    _isMeasuring = false;
+                  });
+                }
+              },
             )
           ],
         ),
         body: Center(
-          child: FlutterBluetoothSerial.instance.isEnabled != null ? Text("Connected") : Text("Connect to an device"),
+          child: _isMeasuring ? Text("Measuring") : Text("Not measuring at the moment. Press the play button to start a new measurement row"),
         )
     );
+  }
+
+  Future<void> _startMeasuring(BuildContext context, BluetoothDevice device) async {
+    print("Hallo");
+    try {
+      _collectingTask = await BackgroundCollectingTask.connect(device);
+      await _collectingTask.start();
+    } catch (ex) {
+      if (_collectingTask != null) {
+        _collectingTask.cancel();
+      }
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error occured while connecting!'),
+            content: Text('${ex.toString()}'),
+            actions: <Widget>[
+              new FlatButton(onPressed: () { Navigator.of(context).pop(); }, child: new Text('Close'))
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  Future<void> _stopMeasuring() async {
+    if (_collectingTask != null) {
+      _collectingTask.cancel();
+    }
   }
 
 }
