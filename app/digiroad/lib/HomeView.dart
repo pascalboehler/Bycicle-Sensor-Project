@@ -8,7 +8,6 @@ import './SelectBondedDevicePage.dart';
 class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
-
 }
 
 class _HomeViewState extends State<HomeView> {
@@ -38,7 +37,6 @@ class _HomeViewState extends State<HomeView> {
     });
 
     Future.doWhile(() async {
-      // Wait if adapter not enabled
       if (await FlutterBluetoothSerial.instance.isEnabled) {
         return false;
       }
@@ -60,7 +58,9 @@ class _HomeViewState extends State<HomeView> {
     });
 
     // Listen for further state changes:
-    FlutterBluetoothSerial.instance.onStateChanged().listen((BluetoothState state) {
+    FlutterBluetoothSerial.instance
+        .onStateChanged()
+        .listen((BluetoothState state) {
       _bluetoothState = state;
     });
   }
@@ -77,11 +77,9 @@ class _HomeViewState extends State<HomeView> {
                 print('Hallo Welt!');
                 if (!_isMeasuring) {
                   final BluetoothDevice selDevice = await Navigator.of(context)
-                      .push(
-                      MaterialPageRoute(builder: (context) {
-                        return SelectBondedDevicePage(checkAvailability: false);
-                      })
-                  );
+                      .push(MaterialPageRoute(builder: (context) {
+                    return SelectBondedDevicePage(checkAvailability: false);
+                  }));
 
                   if (selDevice != null) {
                     print("Connected to device!");
@@ -91,9 +89,9 @@ class _HomeViewState extends State<HomeView> {
                         _isMeasuring = true;
                       });
                     }
-                  }
-                  else {
-                    print('Error while bonding device, you may need to enable bluetooth!');
+                  } else {
+                    print(
+                        'Error while bonding device, you may need to enable bluetooth!');
                   }
                 } else {
                   await _stopMeasuring();
@@ -106,12 +104,15 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
         body: Center(
-          child: _isMeasuring ? Text("Measuring") : Text("Not measuring at the moment. Press the play button to start a new measurement row"),
-        )
-    );
+          child: _isMeasuring
+              ? measureData(context)
+              : Text(
+                  "Please press the play button to start a new measurement row"),
+        ));
   }
 
-  Future<void> _startMeasuring(BuildContext context, BluetoothDevice device) async {
+  Future<void> _startMeasuring(
+      BuildContext context, BluetoothDevice device) async {
     print("Hallo");
     try {
       _collectingTask = await BackgroundCollectingTask.connect(device);
@@ -127,7 +128,11 @@ class _HomeViewState extends State<HomeView> {
             title: const Text('Error occured while connecting!'),
             content: Text('${ex.toString()}'),
             actions: <Widget>[
-              new FlatButton(onPressed: () { Navigator.of(context).pop(); }, child: new Text('Close'))
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: new Text('Close'))
             ],
           );
         },
@@ -141,4 +146,30 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
+  Widget measureData(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                  'Sensor 1: ${_collectingTask != null && _collectingTask.dataList != [] ? _collectingTask.dataList.last.distance1 : "NULL"}'),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                  'Sensor 2: ${_collectingTask != null && _collectingTask.dataList != [] ? _collectingTask.dataList.last.distance2 : "NULL"}'),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                  'Sensor 3: ${_collectingTask != null && _collectingTask.dataList != [] ? _collectingTask.dataList.last.distance3 : "NULL"}'),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }
