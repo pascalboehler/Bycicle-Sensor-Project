@@ -14,4 +14,3 @@ class DigiRoad extends StatelessWidget {
     );
   }
 }
-

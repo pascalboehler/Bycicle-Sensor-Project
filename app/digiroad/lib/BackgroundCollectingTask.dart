@@ -9,17 +9,21 @@ class DistanceData {
   double distance3; // distance value from sensor 3
   DateTime timestamp; // when was it received
 
-  DistanceData({this.distance1, this.distance2, this.distance3, this.timestamp});
+  DistanceData(
+      {this.distance1, this.distance2, this.distance3, this.timestamp});
 }
 
 class BackgroundCollectingTask extends Model {
-  static BackgroundCollectingTask of(BuildContext context, { bool rebuildOnChange = false}) => ScopedModel.of<BackgroundCollectingTask>(context, rebuildOnChange: rebuildOnChange);
+  static BackgroundCollectingTask of(BuildContext context,
+          {bool rebuildOnChange = false}) =>
+      ScopedModel.of<BackgroundCollectingTask>(context,
+          rebuildOnChange: rebuildOnChange);
 
   final BluetoothConnection _connection;
   List<int> _buffer = List<int>();
 
   bool inProgress;
-  
+
   List<DistanceData> dataList = List<DistanceData>();
 
   BackgroundCollectingTask._fromConnection(this._connection) {
@@ -40,8 +44,7 @@ class BackgroundCollectingTask extends Model {
 
           dataList.add(dataSample);
           notifyListeners(); // @FIXME do not invoke too often (should be changed for prod)
-        }
-        else {
+        } else {
           break;
         }
       }
@@ -51,8 +54,10 @@ class BackgroundCollectingTask extends Model {
     });
   }
 
-  static Future<BackgroundCollectingTask> connect(BluetoothDevice server) async {
-    final BluetoothConnection connection = await BluetoothConnection.toAddress(server.address);
+  static Future<BackgroundCollectingTask> connect(
+      BluetoothDevice server) async {
+    final BluetoothConnection connection =
+        await BluetoothConnection.toAddress(server.address);
     return BackgroundCollectingTask._fromConnection(connection);
   }
 

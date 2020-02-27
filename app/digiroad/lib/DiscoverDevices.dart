@@ -96,12 +96,15 @@ class _DiscoverDevicesPageState extends State<DiscoverDevicesPage> {
                 bool bonded = false;
                 if (result.device.isBonded) {
                   print('Unbonding from ${result.device.name}');
-                  await FlutterBluetoothSerial.instance.removeDeviceBondWithAddress(result.device.address);
+                  await FlutterBluetoothSerial.instance
+                      .removeDeviceBondWithAddress(result.device.address);
                   print('Unbonding from ${result.device.name} has succed');
                 } else {
                   print('Bonding with ${result.device.name}');
-                  bonded = await FlutterBluetoothSerial.instance.bondDeviceAtAddress(result.device.address);
-                  print('Bonding with ${result.device.name} has ${bonded ? "succed" : "failes"}');
+                  bonded = await FlutterBluetoothSerial.instance
+                      .bondDeviceAtAddress(result.device.address);
+                  print(
+                      'Bonding with ${result.device.name} has ${bonded ? "succed" : "failes"}');
                 }
                 setState(() {
                   results[results.indexOf(result)] = BluetoothDiscoveryResult(
@@ -109,7 +112,9 @@ class _DiscoverDevicesPageState extends State<DiscoverDevicesPage> {
                       name: result.device.name ?? '',
                       address: result.device.address,
                       type: result.device.type,
-                      bondState: bonded ? BluetoothBondState.bonded : BluetoothBondState.none,
+                      bondState: bonded
+                          ? BluetoothBondState.bonded
+                          : BluetoothBondState.none,
                     ),
                     rssi: result.rssi,
                   );
