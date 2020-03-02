@@ -30,6 +30,7 @@ long distance1 = 0;
 long distance2 = 0;
 long distance3 = 0;
 
+
 void setup() {
   //Bluetooth
   SerialBT.begin("DigiRoad");
@@ -58,13 +59,14 @@ void loop() {
   duration1 = pulseIn(echo1, HIGH); // check how long needs to come back
   distance1 = duration1*0.03432/2; // calc distance duration * aircoupling speed /2 | s=t*0,034/2
   
-  Serial.print("Distance 1: ");
-  Serial.print(distance1);
-  Serial.println(" cm"); 
+  //Print Serial
+    Serial.print("Distance 1: ");
+    Serial.print(distance1);
+    Serial.println(" cm"); 
   //print via bluetooth
-  SerialBT.print("Distance 1: ");
-  SerialBT.print(distance1);
-  SerialBT.println(" cm"); 
+    //SerialBT.print("Distance 1: ");
+    SerialBT.println(distance1);
+    //SerialBT.println(" cm"); 
   if ((distance1 >= 500 || distance1 <= 0)) {
     Serial.println("Error no values found!"); // debug message
     SerialBT.print("Error no values found!"); 
@@ -82,13 +84,14 @@ void loop() {
   duration2 = pulseIn(echo2, HIGH); // check how long needs to come back
   distance2 = duration2* 0.03432/2; // calc distance duration * aircoupling speed/2 | s=t*0,034/2
   
-  Serial.print("Distance 2: ");
-  Serial.print(distance2);
-  Serial.println(" cm"); 
+  //print Serial
+    Serial.print("Distance 2: ");
+    Serial.print(distance2);
+    Serial.println(" cm"); 
   //print via bluetooth
-  SerialBT.print("Distance 2: ");
-  SerialBT.print(distance2);
-  SerialBT.println(" cm"); 
+    //SerialBT.print("Distance 2: ");
+    SerialBT.println(distance2);
+    //SerialBT.println(" cm"); 
   if ((distance2 >= 500 || distance2 <= 0)) {
     Serial.println("Error no values found!"); // debug message
     SerialBT.print("Error no values found!"); 
@@ -110,9 +113,9 @@ void loop() {
   Serial.print(distance3);
   Serial.println(" cm"); 
    //print via bluetooth
-  SerialBT.print("Distance 3: ");
-  SerialBT.print(distance3);
-  SerialBT.println(" cm"); 
+    //SerialBT.print("Distance 3: ");
+    SerialBT.println(distance3);
+    //SerialBT.println(" cm"); 
    
   if ((distance3 >= 500 || distance3 <= 0)) {
     Serial.println("Error no values found!"); // debug message
@@ -122,7 +125,7 @@ void loop() {
   }
   else {
     Serial.println("-----------------");
-    SerialBT.println("-----------------");
+    //SerialBT.println("-----------------");
     playSoundAndLight3(distance3);
   }
   //delay(50);
