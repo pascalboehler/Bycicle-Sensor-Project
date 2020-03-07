@@ -154,19 +154,19 @@ class _HomeViewState extends State<HomeView> {
           Row(
             children: <Widget>[
               Text(
-                  'Sensor 1: ${_collectingTask != null &&  _collectingTask.dataList != null ? _collectingTask.dataList.last.distance1 : "NULL"}'),
+                  'Sensor 1: ${_collectingTask != null &&  _collectingTask.dataList.length != 0 ? _collectingTask.dataList.last.distance1 : "NULL"}'),
             ],
           ),
           Row(
             children: <Widget>[
               Text(
-                  'Sensor 2: ${_collectingTask != null && _collectingTask.dataList != null ? _collectingTask.dataList.last.distance2 : "NULL"}'),
+                  'Sensor 2: ${_collectingTask != null && _collectingTask.dataList.length != 0 ? _collectingTask.dataList.last.distance2 : "NULL"}'),
             ],
           ),
           Row(
             children: <Widget>[
               Text(
-                  'Sensor 3: ${_collectingTask != null && _collectingTask.dataList != null ? _collectingTask.dataList.last.distance3 : "NULL"}'),
+                  'Sensor 3: ${_collectingTask != null && _collectingTask.dataList.length != 0 ? _collectingTask.dataList.last.distance3 : "NULL"}'),
             ],
           )
         ],

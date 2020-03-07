@@ -20,7 +20,7 @@ class BackgroundCollectingTask extends Model {
           rebuildOnChange: rebuildOnChange);
 
   final BluetoothConnection _connection;
-  List<int> _buffer = List<int>();
+  List<int> _buffer = List<int >();
 
   bool inProgress;
 
@@ -31,20 +31,26 @@ class BackgroundCollectingTask extends Model {
       _buffer += data;
 
       while (true) {
+        //print("exec");
         // if there is a sample, and it is full sent
         int index = _buffer.indexOf('t'.codeUnitAt(0));
-        if (index >= 0 && _buffer.length - index >= 7) {
+        print("exec2 " + index.toString() + " " + 't'.codeUnitAt(0).toString());
+        if (index >= 0 && _buffer.length - index >= 4) {
+          print("exec3 with data " + _buffer.toString());
           final DistanceData dataSample = DistanceData(
-            distance1: (_buffer[index + 1] + _buffer[index + 2]) / 100,
-            distance2: (_buffer[index + 3] + _buffer[index + 4]) / 100,
-            distance3: (_buffer[index + 5] + _buffer[index + 6]) / 100,
+            distance1: _buffer[index + 1] / 1,
+            distance2: _buffer[index + 2] / 1,
+            distance3: _buffer[index + 3] / 1,
             timestamp: DateTime.now(),
           );
-          _buffer.removeRange(0, index + 7);
-
+          _buffer.removeRange(0, index + 4);
+          print(_buffer.toString());
+          print(dataSample.distance3.toString());
           dataList.add(dataSample);
+          print(dataList.toString());
           notifyListeners(); // @FIXME do not invoke too often (should be changed for prod)
         } else {
+          //print("Broke up with data " + _buffer.toString());
           break;
         }
       }
