@@ -9,7 +9,7 @@ void setup() {
 
 void loop() {
   int RandomNumber = random(100);
-  SerialBT.print("f");
+  SerialBT.print("t");
   SerialBT.println(RandomNumber);
   SerialBT.println(RandomNumber+1);
   SerialBT.println(RandomNumber+2);
