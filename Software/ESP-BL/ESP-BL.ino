@@ -4,11 +4,16 @@ BluetoothSerial SerialBT;
 
 void setup() {
   SerialBT.begin("ESP32");
+  Serial.begin(9600); 
 }
 
 void loop() {
-  
-  SerialBT.println(random(100));
+  int RandomNumber = random(100);
+  SerialBT.print("f");
+  SerialBT.println(RandomNumber);
+  SerialBT.println(RandomNumber+1);
+  SerialBT.println(RandomNumber+2);
+  Serial.println(RandomNumber);
  
-  delay(1000);
+  delay(100);
 }
