@@ -1,0 +1,21 @@
+env:
+  - FLUTTER_GITHUB="https://github.com/flutter/flutter.git"
+
+language: dart
+
+# MAC IMAGE
+os: osx
+osx_image: xcode11.1
+
+dart:
+  - beta
+
+dart_task:
+  - dartfmt: true
+
+install:
+  - git clone $FLUTTER_GITHUB -b beta
+
+script:
+  - ./flutter/bin/flutter doctor
+  - ./flutter/bin/flutter test
