@@ -20,7 +20,7 @@ class BackgroundCollectingTask extends Model {
           rebuildOnChange: rebuildOnChange);
 
   final BluetoothConnection _connection;
-  List<int> _buffer = List<int >();
+  List<int> _buffer = List<int>();
 
   bool inProgress;
 
