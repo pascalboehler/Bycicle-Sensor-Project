@@ -4,8 +4,7 @@ env:
 language: dart
 
 # MAC IMAGE
-os: osx
-osx_image: xcode11.1
+os: linux
 
 dart:
   - beta
