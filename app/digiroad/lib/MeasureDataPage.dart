@@ -14,7 +14,6 @@ class MeasureDataPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.pause),
             onPressed: () {
-              print("Hallo");
               Navigator.of(context).pop();
             },
           )

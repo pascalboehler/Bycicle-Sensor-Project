@@ -48,7 +48,7 @@ class BackgroundCollectingTask extends Model {
           print(dataSample.distance3.toString());
           dataList.add(dataSample);
           print(dataList.toString());
-          notifyListeners(); // @FIXME do not invoke too often (should be changed for prod)
+          notifyListeners(); // @FIXME do not invoke too often (should be changed for prod, for testing system only sends one value per second)
         } else {
           //print("Broke up with data " + _buffer.toString());
           break;

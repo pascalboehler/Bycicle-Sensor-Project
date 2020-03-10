@@ -6,6 +6,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import './BackgroundCollectingTask.dart';
 import './SelectBondedDevicePage.dart';
+import './MeasureDataPage.dart';
 
 class HomeView extends StatefulWidget {
   @override
