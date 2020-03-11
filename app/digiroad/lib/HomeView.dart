@@ -85,9 +85,13 @@ class _HomeViewState extends State<HomeView> {
                   print("Connected to device!");
                   await _startMeasuring(context, selDevice);
                   if (_collectingTask != null) {
+                    print("opening page route");
                     await Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return MeasureDataPage();
+                      return ScopedModel<BackgroundCollectingTask>(
+                        model: _collectingTask,
+                        child: MeasureDataPage(),
+                      );
                     }));
                   }
                 } else {
@@ -106,7 +110,6 @@ class _HomeViewState extends State<HomeView> {
 
   Future<void> _startMeasuring(
       BuildContext context, BluetoothDevice device) async {
-    print("Hallo");
     try {
       _collectingTask = await BackgroundCollectingTask.connect(device);
       await _collectingTask.start();
