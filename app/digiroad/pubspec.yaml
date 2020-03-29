@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_bluetooth_serial: ^0.2.2
   scoped_model: ^1.0.1
+  flutter_map: ^0.8.2
 
 dev_dependencies:
   flutter_test:
