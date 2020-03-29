@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
-import 'get_location.dart';
 import 'listen_location.dart';
 import 'permission_status.dart';
 import 'service_enabled.dart';
