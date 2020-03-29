@@ -69,42 +69,47 @@ class _BluetoothDataState extends State<BluetoothData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Home"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.play_arrow),
-              onPressed: () async {
-                print('Hallo Welt!');
-                final BluetoothDevice selDevice = await Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return SelectBondedDevicePage(checkAvailability: false);
-                }));
-
-                if (selDevice != null) {
-                  print("Connected to device!");
-                  await _startMeasuring(context, selDevice);
-                  if (_collectingTask != null) {
-                    print("opening page route");
-                    await Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return ScopedModel<BackgroundCollectingTask>(
-                        model: _collectingTask,
-                        child: MeasureDataPage(),
-                      );
-                    }));
-                  }
-                } else {
-                  print(
-                      'Error while bonding device, you may need to enable bluetooth!');
-                }
-              },
-            )
-          ],
-        ),
         body: Center(
-          child: Text(
-              "Please press the play button to start a new measurement row"),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: new FloatingActionButton(
+                    onPressed: ()  async {
+                      print('Hallo Welt!');
+                      final BluetoothDevice selDevice = await Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return SelectBondedDevicePage(checkAvailability: false);
+                      }));
+
+                      if (selDevice != null) {
+                        print("Connected to device!");
+                        await _startMeasuring(context, selDevice);
+                        if (_collectingTask != null) {
+                          print("opening page route");
+                          await Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return ScopedModel<BackgroundCollectingTask>(
+                              model: _collectingTask,
+                              child: MeasureDataPage(),
+                            );
+                          }));
+                        }
+                      } else {
+                        print(
+                            'Error while bonding device, you may need to enable bluetooth!');
+                      }
+                    },
+                    child: Icon(Icons.play_arrow),
+                ),
+              ),
+              Center(
+                child: Text(
+                    "Please press the play button to start a new measurement row"),
+              ),
+            ],
+          ),
         ));
   }
 
