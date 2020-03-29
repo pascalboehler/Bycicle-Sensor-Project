@@ -8,6 +8,7 @@ import './BackgroundCollectingTask.dart';
 import './SelectBondedDevicePage.dart';
 import './MeasureDataPage.dart';
 import './BluetoothData.dart';
+import './settings.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -30,23 +31,22 @@ class _HomeViewState extends State<HomeView> {
       style: optionStyle,
     ),
     BluetoothData(),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    settings(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      // TODO: update AppBar title
     });
   }
+  static String _title ='Home';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text(_title),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
