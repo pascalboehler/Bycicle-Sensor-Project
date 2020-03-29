@@ -9,6 +9,7 @@ import './SelectBondedDevicePage.dart';
 import './MeasureDataPage.dart';
 import './BluetoothData.dart';
 import './settings.dart';
+import './map.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -26,10 +27,7 @@ class _HomeViewState extends State<HomeView> {
       'Index 0: Home',
       style: optionStyle,
     ),
-    Text(
-      'Index 1: Karte',
-      style: optionStyle,
-    ),
+    map(),
     BluetoothData(),
     settings(),
   ];
