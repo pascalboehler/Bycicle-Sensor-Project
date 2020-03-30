@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class about extends StatefulWidget {
@@ -120,7 +121,23 @@ class _aboutState extends State<about> {
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 20),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.map),
+                    SizedBox(width: 5.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Map Data is powered by OpenStreetMap', style: TextStyle(fontSize: 18, color: Colors.grey[600]),),
+                        new InkWell(
+                          child: new Text('https://www.openstreetmap.org/copyright'),
+                          onTap: () => _launchInBrowser('https://www.openstreetmap.org/copyright'),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
