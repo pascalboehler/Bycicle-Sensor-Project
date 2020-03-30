@@ -1,11 +1,9 @@
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
-import 'listen_location.dart';
-import 'permission_status.dart';
-import 'service_enabled.dart';
+import 'dart:async';
 
 
 class map extends StatefulWidget {
@@ -14,28 +12,17 @@ class map extends StatefulWidget {
 }
 
 class _mapState extends State<map> {
+  Position _position;
 
-  final Location location = Location();
-
-  LocationData _location;
-  String _error;
-
-  Future<void> _getLocation() async {
+  Future<void> _getPosition() async {
+    _position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(_position.toString());
     setState(() {
-      _error = null;
+      _position = _position;
     });
-    try {
-      final LocationData _locationResult = await location.getLocation();
-      setState(() {
-        _location = _locationResult;
-        print(_location);
-      });
-    } on PlatformException catch (err) {
-      setState(() {
-        _error = err.code;
-      });
-    }
+
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -84,11 +71,17 @@ class _mapState extends State<map> {
           child: FloatingActionButton(
             child: Icon(Icons.gps_fixed),
             backgroundColor: Colors.grey,// @TODO: change background color if location fixed
-            onPressed: () {
-              print(_getLocation());
+            onPressed: () async {
+              _getPosition();
+              print('start');
             },
           ),
         ),
+        Positioned(
+          bottom: 10,
+          right: 100,
+          child: Text(_position.toString(), style: TextStyle(color: Colors.white),),
+        )
       ],
     );
   }
