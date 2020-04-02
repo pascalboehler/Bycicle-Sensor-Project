@@ -4,6 +4,7 @@ import 'package:latlong/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
+import 'package:digiroad/routing.dart';
 
 
 class map extends StatefulWidget {
@@ -13,12 +14,43 @@ class map extends StatefulWidget {
 
 class _mapState extends State<map> {
   Position _position;
+  String Location;
+  double _latitude = 51.5;
+  double _longitude = -0.09;
+  Color _LocationButtonColor = Colors.grey;
+
+  Future<void> _currentPosition() async {
+    var geolocator = Geolocator();
+    var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+
+
+    StreamSubscription<Position> _positionStream = geolocator.getPositionStream(locationOptions).listen(
+            (Position position) {
+          print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());
+          setState(() {
+            Location =  _position.toString();
+            //cut Location String to the needed format,
+            _latitude = double.parse(Location.substring(5,14));
+            _longitude = double.parse(Location.substring(22,29));
+            _position = _position;
+            _LocationButtonColor = Colors.blue; //change Color if location fixed
+          });
+        });
+  }
 
   Future<void> _getPosition() async {
     _position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(_position.toString());
+    print(_position);
+
+    _currentPosition();
+
     setState(() {
+      /*Location =  _positionStream.toString();
+      //cut Location String to the needed format,
+      _latitude = double.parse(Location.substring(5,14));
+      _longitude = double.parse(Location.substring(22,29));
       _position = _position;
+      _LocationButtonColor = Colors.blue;*/
     });
 
   }
@@ -51,6 +83,19 @@ class _mapState extends State<map> {
                     ),
                   ),
                 ),
+                //current Position @TODO: center map to this marker
+                new Marker(
+                  width: 100,
+                  height: 100,
+                  point: new LatLng(_latitude, _longitude),
+                  builder: (ctx) =>
+                  new  Container(
+                    padding: const EdgeInsets.all(32),
+                    child: Container(
+                      child: Icon(Icons.navigation, color: Colors.blue, size: 50.0),
+                    ),
+                  ),
+                )
               ],
             ),
           ],
@@ -62,6 +107,10 @@ class _mapState extends State<map> {
             child: Icon(Icons.navigation),
             onPressed: () {
               print('pressed');
+              /*Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) {
+                return planRoute();
+              }));*/
             },
           )
         ),
@@ -70,10 +119,9 @@ class _mapState extends State<map> {
           right: 10,
           child: FloatingActionButton(
             child: Icon(Icons.gps_fixed),
-            backgroundColor: Colors.grey,// @TODO: change background color if location fixed
+            backgroundColor: _LocationButtonColor, //change button color if location fixed
             onPressed: () async {
               _getPosition();
-              print('start');
             },
           ),
         ),
