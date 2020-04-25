@@ -28,7 +28,6 @@
 .packages
 .pub-cache/
 .pub/
-.lock
 /build/
 
 
