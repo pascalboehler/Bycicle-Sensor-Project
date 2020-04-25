@@ -10,9 +10,9 @@ void setup() {
 void loop() {
   int RandomNumber = random(100);
   SerialBT.print("t");
-  SerialBT.println(RandomNumber);
-  SerialBT.println(RandomNumber+1);
-  SerialBT.println(RandomNumber+2);
+  SerialBT.write(RandomNumber);
+  SerialBT.write(RandomNumber+1);
+  SerialBT.write(RandomNumber+2);
   Serial.println(RandomNumber);
  
   delay(100);
