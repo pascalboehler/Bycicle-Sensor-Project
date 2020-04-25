@@ -51,6 +51,9 @@ void setup() {
 }
 
 void loop() {
+
+  SerialBT.print("t"); 
+  
   digitalWrite(trigger1, LOW); // nullen
   delay(5); // wait 5 millisecs
   digitalWrite(trigger1, HIGH); // send "tone"
@@ -63,13 +66,12 @@ void loop() {
     Serial.print("Distance 1: ");
     Serial.print(distance1);
     Serial.println(" cm"); 
-  //print via bluetooth
-    //SerialBT.print("Distance 1: ");
-    SerialBT.println(distance1);
+  //write via bluetooth
+    SerialBT.write(distance1);
     //SerialBT.println(" cm"); 
   if ((distance1 >= 500 || distance1 <= 0)) {
     Serial.println("Error no values found!"); // debug message
-    SerialBT.print("Error no values found!"); 
+    SerialBT.write(0); 
   }
   else {
     playSoundAndLight1(distance1);
@@ -90,11 +92,11 @@ void loop() {
     Serial.println(" cm"); 
   //print via bluetooth
     //SerialBT.print("Distance 2: ");
-    SerialBT.println(distance2);
+    SerialBT.write(distance2);
     //SerialBT.println(" cm"); 
   if ((distance2 >= 500 || distance2 <= 0)) {
     Serial.println("Error no values found!"); // debug message
-    SerialBT.print("Error no values found!"); 
+    SerialBT.write(0); 
   }
   else {
     playSoundAndLight2(distance2);
@@ -114,21 +116,19 @@ void loop() {
   Serial.println(" cm"); 
    //print via bluetooth
     //SerialBT.print("Distance 3: ");
-    SerialBT.println(distance3);
+    SerialBT.write(distance3);
     //SerialBT.println(" cm"); 
    
   if ((distance3 >= 500 || distance3 <= 0)) {
     Serial.println("Error no values found!"); // debug message
-    SerialBT.print("Error no values found!"); 
+    SerialBT.print(0); 
     Serial.println("-----------------");
-    SerialBT.println("-----------------");
   }
   else {
     Serial.println("-----------------");
-    //SerialBT.println("-----------------");
     playSoundAndLight3(distance3);
   }
-  //delay(50);
+  delay(300);
 }
 
 void playSoundAndLight1(int distance1) {
