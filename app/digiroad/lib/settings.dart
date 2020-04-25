@@ -30,32 +30,34 @@ class _settingsState extends State<settings> {
           ),
           ListTile(
             leading: Icon(Icons.language),
-            title: Text('Sprache'),
+            title: Text('Sprache'), //TODO:
             onTap: (){
               showDialog(
                 context: context,
               builder: (BuildContext context){
                   return AlertDialog(
                     title: Text('language'),
-                    content: Column(
-                      children: <Widget>[
-                        ListTile(
-                          leading: Radio(),
-                          title: Text('Deutsch'),
-                        ),
-                        ListTile(
-                          leading: Radio(),
-                          title: Text('Englisch'),
-                        ),
-                        ListTile(
-                          leading: Radio(),
-                          title: Text('Französisch'),
-                        ),
-                        ListTile(
-                          leading: Radio(),
-                          title: Text('Spanisch'),
-                        ),
-                      ],
+                    content: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: Radio(),
+                            title: Text('Deutsch'),
+                          ),
+                          ListTile(
+                            leading: Radio(),
+                            title: Text('Englisch'),
+                          ),
+                          ListTile(
+                            leading: Radio(),
+                            title: Text('Französisch'),
+                          ),
+                          ListTile(
+                            leading: Radio(),
+                            title: Text('Spanisch'),
+                          ),
+                        ],
+                      ),
                     ),
                     actions: <Widget>[
                       new FlatButton(
@@ -71,32 +73,34 @@ class _settingsState extends State<settings> {
           ),
           ListTile(
             leading: Icon(Icons.color_lens),
-            title: Text('app Thema'),
+            title: Text('app Thema'), //TODO:
             onTap: () {
               showDialog(
                   context: context,
                   builder: (BuildContext context){
                     return AlertDialog(
                       title: Text('app theme'),
-                      content: Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Radio(),
-                            title: Text('black'),
-                          ),
-                          ListTile(
-                            leading: Radio(),
-                            title: Text('white'),
-                          ),
-                          ListTile(
-                            leading: Radio(),
-                            title: Text('auto'),
-                          ),
-                          ListTile(
-                            leading: Radio(),
-                            title: Text('system'),
-                          ),
-                        ],
+                      content: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              leading: Radio(),
+                              title: Text('black'),
+                            ),
+                            ListTile(
+                              leading: Radio(),
+                              title: Text('white'),
+                            ),
+                            ListTile(
+                              leading: Radio(),
+                              title: Text('auto'),
+                            ),
+                            ListTile(
+                              leading: Radio(),
+                              title: Text('system'),
+                            ),
+                          ],
+                        ),
                       ),
                       actions: <Widget>[
                         new FlatButton(
