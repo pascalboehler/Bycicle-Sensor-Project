@@ -1,12 +1,7 @@
 import 'dart:async';
-import 'package:digiroad/MeasureDataPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import './BackgroundCollectingTask.dart';
-import './SelectBondedDevicePage.dart';
-import './MeasureDataPage.dart';
+import 'package:digiroad/distance_visualization.dart';
 import './BluetoothData.dart';
 import './settings.dart';
 import './map.dart';
@@ -23,10 +18,7 @@ class _HomeViewState extends State<HomeView> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    distance_visualization(103.5, 204.3, 200), //example Data, TODO: remove or display something useful
     map(),
     BluetoothData(),
     settings(),
@@ -57,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            title: Text('Karte')
+            title: Text('Map')
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bluetooth),
@@ -65,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            title: Text('Einstellungen'),
+            title: Text('Settings'),
           )
         ],
         currentIndex: _selectedIndex,
