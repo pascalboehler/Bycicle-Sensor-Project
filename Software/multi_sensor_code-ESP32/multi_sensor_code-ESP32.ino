@@ -128,7 +128,7 @@ void loop() {
     Serial.println("-----------------");
     playSoundAndLight3(distance3);
   }
-  delay(300);
+  delay(300); 
 }
 
 void playSoundAndLight1(int distance1) {
