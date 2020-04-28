@@ -25,23 +25,24 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
 
     List<charts.Series<DistanceDataPie, String>> _generateObject(BackgroundCollectingTask bgTask, int sensorNum) {
       _seriesPieData =  List<charts.Series<DistanceDataPie, String>>();
+      var pieData = List<DistanceDataPie>();
       switch(sensorNum) {
         case 1:
-          var pieData = [
+          pieData = [
             new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, distanceColor1),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0), Colors.transparent),
           ];
           break;
         case 2:
-          var pieData = [
+          pieData = [
             new DistanceDataPie('Distance2', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, distanceColor1),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0), Colors.transparent),
           ];
           break;
         case 3:
-          var pieData = [
+          pieData = [
             new DistanceDataPie('Distance3', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, distanceColor1),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0), Colors.transparent),
@@ -50,11 +51,11 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
         default:
           print("THIS CANNOT HAPPEN IF YOU USE THE FUNCTION PROPERLY");
       }
-      var pieData = [
+      /*var pieData = [
         new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, distanceColor1),
         new DistanceDataPie(
             'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0), Colors.transparent),
-      ];
+      ];*/
       _seriesPieData.add(
         charts.Series(
           data: pieData,
