@@ -35,14 +35,14 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
           break;
         case 2:
           var pieData = [
-            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, distanceColor1),
+            new DistanceDataPie('Distance2', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, distanceColor1),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0), Colors.transparent),
           ];
           break;
         case 3:
           var pieData = [
-            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, distanceColor1),
+            new DistanceDataPie('Distance3', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, distanceColor1),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0), Colors.transparent),
           ];
