@@ -8,10 +8,10 @@ class MeasureDataPage extends StatefulWidget {
 }
 
 class _MeasureDataPageState extends State<MeasureDataPage> {
-    //Data to displayed in the pieChart, yet example Data
-    double distance1 = 150;
-    double distance2 = 200;
-    double distance3 = 300;
+    //Data to displayed in the pieChart
+    double distance1 = 0;
+    double distance2 = 0;
+    double distance3 = 0;
 
     double maxDistance = 300; // Max Distance to get a static relationship in the chart, maybe it has to change
 
@@ -20,9 +20,6 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
     Color distanceColor3 = Colors.green ;
 
     List<charts.Series<DistanceDataPie, String>> _seriesPieData;
-    List<charts.Series<DistanceDataPie, String>> _seriesPieData2;
-    List<charts.Series<DistanceDataPie, String>> _seriesPieData3;
-
     List<charts.Series<DistanceDataPie, String>> _generateObject(BackgroundCollectingTask bgTask, int sensorNum) {
       _seriesPieData =  List<charts.Series<DistanceDataPie, String>>();
       var pieData = List<DistanceDataPie>();
@@ -70,63 +67,10 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
       return _seriesPieData;
     }
 
-    _generateData() {
-      var pieData = [
-        new DistanceDataPie('Distance1', distance1, distanceColor1),
-        new DistanceDataPie(
-            'rest', maxDistance - distance1, Colors.transparent),
-      ];
-      _seriesPieData.add(
-        charts.Series(
-          data: pieData,
-          domainFn: (DistanceDataPie task, _) => task.distance,
-          measureFn: (DistanceDataPie task, _) => task.distancevalue,
-          colorFn: (DistanceDataPie task, _) =>
-              charts.ColorUtil.fromDartColor(task.colorvalue),
-          id: 'distance-measure1',
-          labelAccessorFn: (DistanceDataPie row, _) => '${row.distancevalue}',
-        ),
-      );
-      var pieData2 = [
-        new DistanceDataPie('Distance2', distance2, distanceColor2),
-        new DistanceDataPie(
-            'rest', maxDistance - distance2, Colors.transparent),
-      ];
-      _seriesPieData2.add(
-        charts.Series(
-          data: pieData2,
-          domainFn: (DistanceDataPie task, _) => task.distance,
-          measureFn: (DistanceDataPie task, _) => task.distancevalue,
-          colorFn: (DistanceDataPie task, _) =>
-              charts.ColorUtil.fromDartColor(task.colorvalue),
-          id: 'distance-measure2',
-          labelAccessorFn: (DistanceDataPie row, _) => '${row.distancevalue}',
-        ),
-      );
-      var pieData3 = [
-        new DistanceDataPie('Distance3', distance3, distanceColor3),
-        new DistanceDataPie(
-            'rest', maxDistance - distance3, Colors.transparent),
-      ];
-      _seriesPieData3.add(
-        charts.Series(
-          data: pieData3,
-          domainFn: (DistanceDataPie task, _) => task.distance,
-          measureFn: (DistanceDataPie task, _) => task.distancevalue,
-          colorFn: (DistanceDataPie task, _) =>
-              charts.ColorUtil.fromDartColor(task.colorvalue),
-          id: 'distance-measure3',
-          labelAccessorFn: (DistanceDataPie row, _) => '${row.distancevalue}',
-        ),
-      );
-    }
   @override
   void initState(){
     super.initState();
     _seriesPieData =  List<charts.Series<DistanceDataPie, String>>();
-    _seriesPieData2 = List<charts.Series<DistanceDataPie, String>>();
-    _seriesPieData3 = List<charts.Series<DistanceDataPie, String>>();
-    _generateData();
   }
 
     @override
