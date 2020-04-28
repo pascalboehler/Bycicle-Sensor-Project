@@ -11,6 +11,7 @@ import './MeasureDataPage.dart';
 class BluetoothData extends StatefulWidget {
   @override
   _BluetoothDataState createState() => _BluetoothDataState();
+  bool isConnected = false;
 }
 
 class _BluetoothDataState extends State<BluetoothData> {

@@ -10,7 +10,7 @@ class MeasureDataPage extends StatefulWidget {
 class _MeasureDataPageState extends State<MeasureDataPage> {
     //Data to displayed in the pieChart, yet example Data
     double distance1 = 150;
-    double distance2 = 200; // TODO: insert true data from the sensor
+    double distance2 = 200;
     double distance3 = 300;
 
     double maxDistance = 300; // Max Distance to get a static relationship in the chart, maybe it has to change
@@ -22,6 +22,52 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
     List<charts.Series<DistanceDataPie, String>> _seriesPieData;
     List<charts.Series<DistanceDataPie, String>> _seriesPieData2;
     List<charts.Series<DistanceDataPie, String>> _seriesPieData3;
+
+    List<charts.Series<DistanceDataPie, String>> _generateObject(BackgroundCollectingTask bgTask, int sensorNum) {
+      _seriesPieData =  List<charts.Series<DistanceDataPie, String>>();
+      switch(sensorNum) {
+        case 1:
+          var pieData = [
+            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, distanceColor1),
+            new DistanceDataPie(
+                'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0), Colors.transparent),
+          ];
+          break;
+        case 2:
+          var pieData = [
+            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, distanceColor1),
+            new DistanceDataPie(
+                'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0), Colors.transparent),
+          ];
+          break;
+        case 3:
+          var pieData = [
+            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, distanceColor1),
+            new DistanceDataPie(
+                'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0), Colors.transparent),
+          ];
+          break;
+        default:
+          print("THIS CANNOT HAPPEN IF YOU USE THE FUNCTION PROPERLY");
+      }
+      var pieData = [
+        new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, distanceColor1),
+        new DistanceDataPie(
+            'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0), Colors.transparent),
+      ];
+      _seriesPieData.add(
+        charts.Series(
+          data: pieData,
+          domainFn: (DistanceDataPie task, _) => task.distance,
+          measureFn: (DistanceDataPie task, _) => task.distancevalue,
+          colorFn: (DistanceDataPie task, _) =>
+              charts.ColorUtil.fromDartColor(task.colorvalue),
+          id: 'distance-measure1',
+          labelAccessorFn: (DistanceDataPie row, _) => '${row.distancevalue}',
+        ),
+      );
+      return _seriesPieData;
+    }
 
     _generateData() {
       var pieData = [
@@ -84,7 +130,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
 
     @override
     Widget build(BuildContext context) {
-      final BackgroundCollectingTask task =
+      final BackgroundCollectingTask bgTask =
       BackgroundCollectingTask.of(context, rebuildOnChange: true);
 
       return Scaffold(
@@ -107,11 +153,11 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                 children: <Widget>[
                   Text('left'),
                   Text(
-                      'Sensor 1: ${task != null && task.dataList.length != 0 ? task.dataList.last.distance1 : "NULL"}'),
+                      'Sensor 1: ${bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : "NULL"}'),
                   SizedBox(height: 1.0),
                   Expanded(
                     child: charts.PieChart(
-                      _seriesPieData,
+                      _generateObject(bgTask, 1), // TODO: Manage colour (red, green)
                       animate: true,
                       animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
@@ -126,11 +172,11 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                   ),
                   Text('right'),
                   Text(
-                      'Sensor 2: ${task != null && task.dataList.length != 0 ? task.dataList.last.distance2 : "NULL"}'),
+                      'Sensor 2: ${bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : "NULL"}'),
                   SizedBox(height: 1.0),
                   Expanded(
                     child: charts.PieChart(
-                      _seriesPieData2,
+                      _generateObject(bgTask, 2), // TODO: Manage colour (red, green)
                       animate: true,
                       animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
@@ -145,11 +191,11 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                   ),
                   Text('behind'),
                   Text(
-                      'Sensor 3: ${task != null && task.dataList.length != 0 ? task.dataList.last.distance3 : "NULL"}'),
+                      'Sensor 3: ${bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : "NULL"}'),
                   SizedBox(height: 1.0),
                   Expanded(
                     child: charts.PieChart(
-                      _seriesPieData3,
+                      _generateObject(bgTask, 3), // TODO: Manage colour (red, green)
                       animate: true,
                       animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
