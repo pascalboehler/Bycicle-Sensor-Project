@@ -85,7 +85,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
           IconButton(
             icon: Icon(Icons.pause),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // TODO: Stop bgTask here
             },
           )
         ],
@@ -104,7 +104,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                     child: charts.PieChart(
                       _generateObject(bgTask, 1), // TODO: Manage colour (red, green)
                       animate: true,
-                      animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
+                      animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
                           arcWidth: 50,
                           arcRendererDecorators: [
@@ -123,7 +123,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                     child: charts.PieChart(
                       _generateObject(bgTask, 2), // TODO: Manage colour (red, green)
                       animate: true,
-                      animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
+                      animationDuration: Duration(seconds: 300), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
                           arcWidth: 50,
                           arcRendererDecorators: [
@@ -142,7 +142,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                     child: charts.PieChart(
                       _generateObject(bgTask, 3), // TODO: Manage colour (red, green)
                       animate: true,
-                      animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
+                      animationDuration: Duration(seconds: 300), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
                           arcWidth: 50,
                           arcRendererDecorators: [

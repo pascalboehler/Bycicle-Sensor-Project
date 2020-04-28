@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+// TODO: Stop BackgroundTask when pressed on paused button
+
 class DistanceData {
   double distance1; // distance value from sensor 1
   double distance2; // distance value from sensor 2
