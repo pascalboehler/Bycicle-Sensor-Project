@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'HomeView.dart';
+import 'views/HomeView.dart';
 
 void main() => runApp(DigiRoad());
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './about.dart';
+import 'about.dart';
 
 class settings extends StatefulWidget {
   @override

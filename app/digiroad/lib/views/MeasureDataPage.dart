@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './BackgroundCollectingTask.dart';
+import '../data/BackgroundCollectingTask.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class MeasureDataPage extends StatefulWidget {

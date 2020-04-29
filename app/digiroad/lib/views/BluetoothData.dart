@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:digiroad/MeasureDataPage.dart';
+import 'package:digiroad/views/MeasureDataPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import './BackgroundCollectingTask.dart';
-import './SelectBondedDevicePage.dart';
-import './MeasureDataPage.dart';
+import '../data/BackgroundCollectingTask.dart';
+import 'SelectBondedDevicePage.dart';
+import 'MeasureDataPage.dart';
 
 class BluetoothData extends StatefulWidget {
   @override

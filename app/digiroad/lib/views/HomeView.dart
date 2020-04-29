@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:digiroad/distance_visualization.dart';
-import './BluetoothData.dart';
-import './settings.dart';
-import './map.dart';
+import 'package:digiroad/views/distance_visualization.dart';
+import 'BluetoothData.dart';
+import 'settings.dart';
+import 'map.dart';
 
 
 class HomeView extends StatefulWidget {
