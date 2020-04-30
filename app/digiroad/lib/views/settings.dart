@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about.dart';
+import '../data/LocalCaching.dart';
 
 class settings extends StatefulWidget {
   @override
@@ -23,10 +24,17 @@ class _settingsState extends State<settings> {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Text('allgemeines',
+            child: Text('Allgemeines',
             style: TextStyle(color: Colors.blue[500]
               ),
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.import_export),
+            title: Text('Messdaten exportieren'),
+            onTap: () {
+              LocalCaching.exportCSVFile(); // Share the CSV File via share dialog
+            }
           ),
           ListTile(
             leading: Icon(Icons.language),

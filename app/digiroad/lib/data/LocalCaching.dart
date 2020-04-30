@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:share_extend/share_extend.dart';
 
 class LocalCaching {
   static void convertToCSV(List<List<dynamic>> data) async {
@@ -36,6 +37,8 @@ class LocalCaching {
   }
 
   static void exportCSVFile() async {
-
+    Directory homeDir = await getApplicationDocumentsDirectory();
+    var csvFile = new File('/distanceData.csv');
+    ShareExtend.share(csvFile.path, "file"); // export the file :)
   }
 }
