@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:scoped_model/scoped_model.dart';
+import '../data/LocalCaching.dart';
 
 // TODO: Stop BackgroundTask when pressed on paused button
 
@@ -23,7 +24,7 @@ class BackgroundCollectingTask extends Model {
 
   final BluetoothConnection _connection;
   List<int> _buffer = List<int>();
-
+  List<List<dynamic>> caching = new List<List<dynamic>>();
   bool inProgress;
 
   List<DistanceData> dataList = List<DistanceData>();
@@ -50,6 +51,8 @@ class BackgroundCollectingTask extends Model {
           print(dataSample.distance3.toString());
           dataList.add(dataSample);
           print(dataList.toString());
+          // Write data to cache:
+          caching.add([dataSample.distance1, dataSample.distance2, dataSample.distance3]);
           notifyListeners(); // @FIXME do not invoke too often (should be changed for prod, for testing system only sends one value per second)
         } else {
           //print("Broke up with data " + _buffer.toString());
@@ -86,6 +89,8 @@ class BackgroundCollectingTask extends Model {
     inProgress = true;
     notifyListeners();
     _connection.output.add(ascii.encode('stop'));
+    // write data to local file:
+    LocalCaching.convertToCSV(caching);
     await _connection.finish();
   }
 
@@ -93,6 +98,8 @@ class BackgroundCollectingTask extends Model {
     inProgress = false;
     notifyListeners();
     _connection.output.add(ascii.encode('stop'));
+    // write data to local file:
+    LocalCaching.convertToCSV(caching);
     await _connection.output.allSent;
   }
 

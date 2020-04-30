@@ -1,24 +1,41 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:csv/csv.dart';
+import 'package:path_provider/path_provider.dart';
 
 class LocalCaching {
-  Future<bool> convertToCSV(List<List<dynamic>> data) async {
+  static void convertToCSV(List<List<dynamic>> data) async {
     // convert list to csv:
     String csvData = ListToCsvConverter().convert(data);
     // write data to file:
-    var csvFile = new File('distanceData.csv');
-    csvFile.readAsString().then((oldData) {
-      oldData += csvData;
-      csvFile.writeAsString(csvData).then((File file) {
+    Directory localDir = await getApplicationDocumentsDirectory();
+    var csvFile = new File(localDir.path + '/distanceData.csv');
+    if(await csvFile.exists()) {
+      print("File exists");
+      csvFile.readAsString().then((oldData) {
+        //oldData += csvData;
+        //print(oldData);
+        csvFile.writeAsString(csvData + '\r\n', mode: FileMode.append).then((File file) {
+          if (file != null) {
+            print("${DateTime.now()}: Succeeded writing"); // log to cmd
+            return true; // if succeed return true
+          } else{
+            return false;
+          }
+        });
+      });
+    } else {
+      print("File does not exists");
+      csvFile.writeAsString(csvData, mode: FileMode.append).then((File file) {
         if (file != null) {
           print("${DateTime.now()}: Succeeded writing"); // log to cmd
-          return true; // if succeed return true
         } else{
-          return false;
         }
       });
-    });
-    return true;
+    }
+  }
+
+  static void exportCSVFile() async {
+
   }
 }
