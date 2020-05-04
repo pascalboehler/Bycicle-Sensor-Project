@@ -1,7 +1,7 @@
 # Bycicle Sensor Project
  [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) ![Digitechnikum](https://img.shields.io/badge/Digitechnikum-Made%20with%20%3C3-brightgreen) [![Build Status](https://travis-ci.org/pascalboehler/Bycicle-Sensor-Project.svg?branch=master)](https://travis-ci.org/pascalboehler/Bycicle-Sensor-Project)
 ## What is this project about?
-Our mission is to make the streets of our city a safer place. We try to achieve this aim by creating and deploying a distance warning sensor for bikers.
+!Our mission is to make the streets of our city a safer place. We try to achieve this aim by creating and deploying a distance warning sensor for bikers.
 
 ## How does the sensor works?
 Our sensor works with one ultra sonic sensor which can by mounted on your bike. If a car comes nearer than 1,5 meters (the minimal distance allowed in germany), we will give you an acoustic and visual warning, that will inform you about the dangerous situation.
