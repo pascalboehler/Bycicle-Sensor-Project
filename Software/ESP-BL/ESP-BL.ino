@@ -15,5 +15,5 @@ void loop() {
   SerialBT.write(RandomNumber+2);
   Serial.println(RandomNumber);
  
-  delay(100);
+  delay(300);
 }
