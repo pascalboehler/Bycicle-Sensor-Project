@@ -38,6 +38,8 @@ services:
     env_file:
       - grafana.env
     restart: always
+    volumes:
+      - ./grafana-data:/var/lib/grafana
     labels:
       - traefik.http.routers.grafana.rule=Host("localhost") && PathPrefix("/grafana") # for local testing only!! change to server url later
 
@@ -49,7 +51,7 @@ services:
       #- "8086:8086"
       #- "2003:2003"
     volumes:
-      - ./influxdb-data:var/lib/influxdb
+      - ./influxdb-data:/var/lib/influxdb
   
   # telegraf for collecting data about server health
   telegraf:
