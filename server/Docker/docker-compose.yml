@@ -60,4 +60,4 @@ services:
     links:
       - influxdb
     volumes:
-      - ./telegraf-data/telegraf.conv:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf-data/telegraf.conf:/etc/telegraf/telegraf.conf:ro
