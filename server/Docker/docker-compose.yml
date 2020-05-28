@@ -1,4 +1,4 @@
-version: 3
+version: "3"
 services:
   # Server main parts:
   # Database server
