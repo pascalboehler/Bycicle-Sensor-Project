@@ -20,6 +20,8 @@ servers:
     description: Testing server
 
 paths:
+
+# user authentification
   /auth/login:
     get:
       description: AUthentificate on server for access to user psecific data and receiving uid  token
@@ -92,7 +94,8 @@ paths:
                    message:
                      type: string
                      example: User already exists please login instead!
-                     
+
+# Get data from server      
   /data/userData:
     description: Get user specific dataset for statistics
     get:
@@ -169,7 +172,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/tripData'
+                  $ref: '#/components/schemas/trip'
+
+# Send data to server
+  /data/userData/trip:
+    description: Send new trip to server
+    post:
+      parameters:
+        - in: body
+          name: tripData
+          required: true
+          description: Trip data with name, id and dataset
+          schema:
+            type: object
+            $ref: '#/components/schemas/tripData'
+      responses:
+        "200":
+          description: succesfully wrote data to server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+
+        "400":
+          description: error while writing data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error writing data
 
 components:
   schemas:
@@ -235,6 +273,16 @@ components:
           type: string
           example: 4
 
+    trip:
+      description: Dataset that includes information about specific trip the user recorded
+      properties:
+        tripId:
+          type: integer
+          example: 4
+        tripName:
+          type: string
+          example: Biketour
+
     tripData:
       description: Dataset that includes information about specific trip the user recorded
       properties:
@@ -244,3 +292,7 @@ components:
         tripName:
           type: string
           example: Biketour
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DistanceData'
