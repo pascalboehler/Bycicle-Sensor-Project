@@ -27,9 +27,9 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./static.yml:/etc/traefik/traefik.yml
-      - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
-      - ./acme.json:/etc/traefik/acme/acme.json
+      #- ./static.yml:/etc/traefik/traefik.yml
+      #- ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
+      #- ./acme.json:/etc/traefik/acme/acme.json
   
   # Server monitoring:
   # grafana monitoring solution
@@ -41,7 +41,7 @@ services:
     volumes:
       - ./grafana-data:/var/lib/grafana
     labels:
-      - traefik.http.routers.grafana.rule=Host("localhost") && PathPrefix("/grafana") # for local testing only!! change to server url later
+      - traefik.http.routers.grafana.rule=Host("digiroad.digitechnikum.de") && PathPrefix("/grafana") # for local testing only!! change to server url later
 
   # influx db for data storage
   influxdb:
