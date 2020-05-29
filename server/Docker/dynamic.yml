@@ -3,8 +3,9 @@ http:
       https-redirect:
         rule: 'HostRegexp(`{any:.*}`)'
         middlewares:
-         - https-redirect
+          - https-redirect
         service: redirect-all
+        
     middlewares:
       https-redirect:
         redirectScheme:

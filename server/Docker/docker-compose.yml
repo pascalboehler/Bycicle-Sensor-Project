@@ -17,7 +17,7 @@ services:
   # reverse proxy:
   traefik:
     image: traefik:v2.0
-    command: --api --providers.docker
+    command: --api.dashboard=true --api.insecure=true --providers.docker
     restart: always
     ports:
       # HTTP / HTTPS ports:
