@@ -14,9 +14,9 @@ info:
     url: digiroad.de/licence
 
 servers:
-  - url: https://api.digiroad.de
+  - url: https://api.digiroad.tech
     description: Production server
-  - url: https://digiroad.digitechnikum.de/api/v1
+  - url: http://127.0.0.1:5000/
     description: Testing server
 
 paths:
@@ -43,9 +43,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  uid:
+                  token:
                     type: string
-                    example: skdjtfrstoizu4e5786zu4ße69789081iklucdrfhiogfzh
+                    example: YOURUNIQUESESSIONTOKEN
                     
         "400":
           description: unsuccessful. wrong password or email
@@ -83,7 +83,10 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/useraccount'
+                properties:
+                  token:
+                    type: string
+                    example: YOURUNIQUESESSIONTOKEN
          "400":
            description: User already exists
            content:
@@ -107,9 +110,9 @@ paths:
           schema:
             type: object
             properties:
-              userId:
+              token:
                 type: string
-                example: USERIDRECEIVEDFROMSERVER
+                example: SESSIONTOKENRECEIVEDFROMSERVER
 
       responses:
         "200":
@@ -126,15 +129,15 @@ paths:
     get:
       parameters:
         - in: body
-          name: userId
+          name: token
           required: true
           description: UserId for authentification via server, uid will be received after login request
           schema:
             type: object
             properties:
-              userId:
+              token:
                 type: string
-                example: USERIDRECEIVEDFROMSERVER
+                example: YOURUNIQUESESSIONTOKEN
               tripNumber:
                 type: integer
                 example: 4
@@ -154,15 +157,15 @@ paths:
     get:
       parameters:
         - in: body
-          name: userId
+          name: token
           required: true
-          description: userId for authentification via sevrer, will be received while login challenge
+          description: session token for authentification via sevrer, will be received while login challenge
           schema:
             type: object
             properties:
-              userId:
+              token:
                 type: string
-                example: USERIDRECEIVEDFROMSERVER
+                example: YOURUNIQUESESSIONTOKEN
 
       responses:
         "200":
@@ -243,7 +246,7 @@ components:
     DistanceData:
       description: Data about saved Distance data
       properties:
-        DataID:
+        dataId:
           type: integer
           example: 4
 
