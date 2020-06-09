@@ -16,7 +16,7 @@ info:
 servers:
   - url: https://api.digiroad.tech
     description: Production server
-  - url: http://127.0.0.1:5000/
+  - url: http://digiroad.digitechnikum.de
     description: Testing server
 
 paths:
@@ -73,7 +73,7 @@ paths:
          description: User dataset for signing up new user
          schema:
            type: object
-           $ref: '#/components/schemas/useraccount'
+           $ref: '#/components/schemas/signup_account'
 
       responses:
          "200":
@@ -223,6 +223,19 @@ components:
            type: string
            example: SHA256HASH
            
+    signup_account:
+      description: Signup information
+      properties:
+        username:
+          type: string
+          example: mmustermann
+        user_password_hash:
+          type: string
+          example: SHA256HASH
+        joindate:
+          type: string
+          example: 21052020
+    
     useraccount:
       description: Informationen about Useraccount
       properties:
