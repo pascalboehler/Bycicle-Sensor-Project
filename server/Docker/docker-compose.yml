@@ -20,7 +20,8 @@ services:
     restart: always
     labels: 
       - traefik.http.routers.grafana.rule=Host("digiroad.digitechnikum.de")
-      - traefik.port=5000
+      #- traefik.port=5000
+      - traefik.http.services.api.loadbalancer.server.port=5000
   # reverse proxy:
   traefik:
     image: traefik:v2.0
