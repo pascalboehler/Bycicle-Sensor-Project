@@ -13,7 +13,11 @@ services:
     restart: always
 
   # add python container here:
-
+  digiroad_server:
+    image: docker.pkg.github.com/pascalboehler/bycicle-sensor-project/digiroad:testing
+    restart: always
+    labels: 
+      - traefik.http.routers.grafana.rule=Host("digiroad.digitechnikum.de")
   # reverse proxy:
   traefik:
     image: traefik:v2.0
@@ -41,7 +45,7 @@ services:
     volumes:
       - ./grafana-data:/var/lib/grafana
     labels:
-      - traefik.http.routers.grafana.rule=Host("digiroad.digitechnikum.de") && PathPrefix("/grafana") # for local testing only!! change to server url later
+      - traefik.http.routers.grafana.rule=Host("grafana.digiroad.digitechnikum.de") # for local testing only!! change to server url later
 
   # influx db for data storage
   influxdb:
