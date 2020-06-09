@@ -19,7 +19,7 @@ services:
     image: pboehler/digiroad:testing
     restart: always
     labels: 
-      - traefik.http.routers.api.rule=Host("digiroad.digitechnikum.de")
+      - traefik.http.routers.apigi.rule=Host("digiroad.digitechnikum.de")
       #- traefik.port=5000
       - traefik.http.services.api.loadbalancer.server.port=5000
   # reverse proxy:
@@ -38,9 +38,9 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      #- ./static.yml:/etc/traefik/traefik.yml
-      #- ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
-      #- ./acme.json:/etc/traefik/acme/acme.json
+      - ./static.yml:/etc/traefik/traefik.yml
+      - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
+      - ./acme.json:/etc/traefik/acme/acme.json
   
   # Server monitoring:
   # grafana monitoring solution

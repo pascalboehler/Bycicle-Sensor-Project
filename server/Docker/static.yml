@@ -15,7 +15,7 @@ entryPoints:
   certificatesResolvers:
     default:
       acme:
-        email: admin@example.org
+        email: info@photographymore.kiwi
         storage: /etc/traefik/acme/acme.json
         httpChallenge:
           entryPoint: web
