@@ -23,7 +23,7 @@ def login():
 
 
 # sign up for service
-@app.route('/auth/signup')
+@app.route('/auth/signup', methods=['POST'])
 def signup():
     json_response = {
         "token": "YOURUNIQUESESSIONTOKEN"
@@ -96,7 +96,7 @@ def trips():
 
 
 # create a new trip on server (session token needs to be provided)
-@app.route('/data/userData/trip')
+@app.route('/data/userData/trip', methods=['POST'])
 def create_trip():
     json_response = {
         "success": True
