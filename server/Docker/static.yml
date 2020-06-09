@@ -16,7 +16,7 @@
   certificatesResolvers:
     default:
       acme:
-        email: admin@example.org
+        email: info@bembel.tech
         storage: /etc/traefik/acme/acme.json
         httpChallenge:
           entryPoint: web
