@@ -11,6 +11,8 @@ services:
       - ./mysql_data:/var/lib/mysql
     
     restart: always
+    labels:
+      - traefik.enable=false
 
   # add python container here:
   digiroad_server:
@@ -18,6 +20,7 @@ services:
     restart: always
     labels: 
       - traefik.http.routers.grafana.rule=Host("digiroad.digitechnikum.de")
+      - traefik.port=5000
   # reverse proxy:
   traefik:
     image: traefik:v2.0
