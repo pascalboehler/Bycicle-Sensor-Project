@@ -19,9 +19,9 @@ services:
     image: pboehler/digiroad:testing
     restart: always
     labels: 
-      - traefik.http.routers.apigi.rule=Host("digiroad.digitechnikum.de")
+      - traefik.http.routers.digiroad_api.rule=Host("digiroad.digitechnikum.de")
       #- traefik.port=5000
-      - traefik.http.services.api.loadbalancer.server.port=5000
+      - traefik.http.services.digiroad_api.loadbalancer.server.port=5000
   # reverse proxy:
   traefik:
     image: traefik:v2.0
