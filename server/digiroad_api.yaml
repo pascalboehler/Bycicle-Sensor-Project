@@ -31,9 +31,8 @@ paths:
           required: true
           description: User Login informations
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/userauth'
+            type: object
+            $ref: '#/components/schemas/userauth'
               
       responses:
         "200":
@@ -220,7 +219,7 @@ components:
          username:
            type: string
            example: mmustermann
-         user_passwort_hash:
+         user_password_hash:
            type: string
            example: SHA256HASH
            
