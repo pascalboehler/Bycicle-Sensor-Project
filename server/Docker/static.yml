@@ -1,4 +1,5 @@
-entryPoints:
+  
+  entryPoints:
     web:
       address: ":80"
     web-secure:
@@ -15,7 +16,7 @@ entryPoints:
   certificatesResolvers:
     default:
       acme:
-        email: info@photographymore.kiwi
+        email: admin@example.org
         storage: /etc/traefik/acme/acme.json
         httpChallenge:
           entryPoint: web

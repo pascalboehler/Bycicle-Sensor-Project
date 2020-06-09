@@ -8,3 +8,9 @@ Thumbs.db
 *.log
 
 *.env
+
+# datafiles from server:
+server/Docker/influxdb-data
+server/Docker/grafana-data
+server/Docker/mysql_data
+server/Docker/telegraf-data
