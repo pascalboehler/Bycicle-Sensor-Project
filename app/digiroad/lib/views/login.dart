@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'HomeView.dart';
-
+import 'package:digiroad/data/ServerRequest.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,7 +16,31 @@ enum FormType {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  SharedPreferences sharedPreferences;
 
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString("token") != null) {
+      print('you are already logged in');
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return HomeView();
+      }));
+    } else if (sharedPreferences.getBool("UseWithoutAccount") == true) {
+      print('you want to the app Without Account');
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return HomeView();
+      }));
+    }
+  }
+
+  UseWithoutAccount() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool("UseWithoutAccount", true);
+    print("settings saved");
+  }
+ 
   final TextEditingController _usernameFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
   String _username = "";
@@ -53,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
       }
     });
   }
-
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -78,9 +107,54 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildTextFields() {
-    return new Container(
+    return new Container (
       child: new Column(
         children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              new FlatButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            title: Text('Skip Login'),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  Text("If you want to send or receive data, you must log in or create an account. If you do not wish to do so, you can still use the app with limited functionality. You can still create an account later or log in via the settings. ")
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              new FlatButton(
+                                child: Text("Yes"),
+                                color: Colors.green,
+                                onPressed: () {
+                                  UseWithoutAccount();
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context)
+                                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                                    return HomeView();
+                                  }));
+                                },
+                              ),
+                              new FlatButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('No'),
+                                color: Colors.red,
+                              ),
+                            ],
+                          );
+                        }
+                    );
+                  },
+                  child: Text("skip for now"))
+            ],
+          ),
           new Container(
             child: Text(
               '$_hint',
@@ -123,6 +197,7 @@ class _LoginPageState extends State<LoginPage> {
             new FlatButton(
               child: new Text('Dont have an account? Tap here to register.'),
               onPressed: _formChange,
+              color: Colors.orange,
             ),
             new FlatButton(
               child: new Text('Forgot Password?'),
@@ -136,12 +211,18 @@ class _LoginPageState extends State<LoginPage> {
         child: new Column(
           children: <Widget>[
             new RaisedButton(
+                onPressed: () {},
+                child: new Text('You have to agree with our Terms of use'),
+              color: Colors.red,
+            ),
+            new RaisedButton(
               child: new Text('Create an Account'),
               onPressed: _createAccountPressed,
             ),
             new FlatButton(
               child: new Text('Have an account? Click here to login.'),
               onPressed: _formChange,
+              color: Colors.green,
             )
           ],
         ),
@@ -151,25 +232,25 @@ class _LoginPageState extends State<LoginPage> {
 
 // These functions can self contain any user auth logic required, they all have access to _email and _password
 //TODO: Account handling, save login permanently
+
   void _loginPressed () {
-    print('The user wants to login with $_username and $_password');
-    if (_username == "test" && _password == "1234") {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) {
-        return HomeView();
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return LoginRequest(username: _username, password: _password);
       }));
-      print('scussfull login');
+      print('data is send to Server');
+      //_hint = "wrong password - please try again";
     }
-    else {
-      print('user wants to login with wrong username or password');
-      setState(() {
-        _hint = "wrong password - please try again";
-      });
-    }
-  }
+
   void _createAccountPressed () {
     print('The user wants to create an accoutn with $_username and $_password');
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return SignUpRequest(username: _username, password: _password);
+    }));
+    print('data is send to Server');
   }
+
   void _passwordReset () {
     print("The user wants a password reset request sent to $_username");
   }
