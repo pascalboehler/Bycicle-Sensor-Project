@@ -36,7 +36,7 @@ class _aboutState extends State<about> {
               children: <Widget>[
                 Center(
                   child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/app-logo.png'), //@TODO: Insert app logo
+                    backgroundImage: AssetImage('assets/digi_road_app_logo.png'), //@TODO: Insert app logo
                     radius: 80,
                   ),
                 ),
