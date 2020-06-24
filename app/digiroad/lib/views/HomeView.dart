@@ -5,6 +5,8 @@ import 'package:digiroad/views/distance_visualization.dart';
 import 'BluetoothData.dart';
 import 'settings.dart';
 import 'map.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -13,6 +15,24 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+  SharedPreferences sharedPreferences;
+
+  checkLoginStatus() async { //
+    sharedPreferences = await SharedPreferences.getInstance();
+
+    if(sharedPreferences.getBool("UseWithoutAccount") == true) {
+      print('you want to the app Without Account');
+    }
+    else if (sharedPreferences.getString("token") == null)  {
+      print('you are not logged in');
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return LoginPage();
+      }));
+      }
+  }
+
   int _selectedIndex = 0;
 
   static const TextStyle optionStyle =
@@ -33,6 +53,10 @@ class _HomeViewState extends State<HomeView> {
   static String _title ='Home';
 
   @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
