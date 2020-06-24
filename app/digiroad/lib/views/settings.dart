@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'about.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login.dart';
+import 'settings_user-account.dart';
+import 'TestServerRequest.dart';
 
 class settings extends StatefulWidget {
   @override
@@ -7,6 +11,9 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,6 +25,34 @@ class _settingsState extends State<settings> {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) {
                 return about();
+              }));
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text('User Account setting',
+              style: TextStyle(color: Colors.blue[500]
+              ),
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('User Account Settings'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) {
+                return userAccountSettings();
+              }));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Test Server Request'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) {
+                return TestServerRequests();
               }));
             },
           ),
