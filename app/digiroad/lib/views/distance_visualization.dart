@@ -19,8 +19,17 @@ class _distance_visualizationState extends State<distance_visualization> {
   List<charts.Series<DistanceDataPie,String>> _seriesPieData3;
 
   _generateData() {
+
+    _distanceColor (distance) {
+      if (distance < 150) {
+        return Colors.red;
+      }else {
+        return Colors.green;
+      };
+    }
+
     var pieData=[
-      new DistanceDataPie('Distance', widget.distance1, Colors.red),
+      new DistanceDataPie('Distance', widget.distance1, _distanceColor(widget.distance1) ),
       new DistanceDataPie('rest',  maxDistance-widget.distance1, Colors.transparent),
     ];
     _seriesPieData.add(
@@ -34,7 +43,7 @@ class _distance_visualizationState extends State<distance_visualization> {
       ),
     );
     var pieData2=[
-      new DistanceDataPie('Distance', widget.distance2, Colors.green),
+      new DistanceDataPie('Distance', widget.distance2, _distanceColor(widget.distance2) ),
       new DistanceDataPie('rest', maxDistance-widget.distance2, Colors.transparent),
     ];
     _seriesPieData2.add(
@@ -48,7 +57,7 @@ class _distance_visualizationState extends State<distance_visualization> {
       ),
     );
     var pieData3=[
-      new DistanceDataPie('Distance', widget.distance3, Colors.green),
+      new DistanceDataPie('Distance', widget.distance3, _distanceColor(widget.distance3) ),
       new DistanceDataPie('rest', maxDistance-widget.distance3, Colors.transparent),
     ];
     _seriesPieData3.add(
@@ -88,7 +97,7 @@ class _distance_visualizationState extends State<distance_visualization> {
                         child: charts.PieChart(
                           _seriesPieData,
                           animate: true,
-                          animationDuration: Duration(seconds: 0), //TODO: test different animationDuration
+                          animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                           defaultRenderer: new charts.ArcRendererConfig(
                               arcWidth: 50,
                               arcRendererDecorators: [
@@ -105,7 +114,7 @@ class _distance_visualizationState extends State<distance_visualization> {
                         child: charts.PieChart(
                           _seriesPieData2,
                           animate: true,
-                          animationDuration: Duration(seconds: 1), //TODO: test different animationDuration
+                          animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                           defaultRenderer: new charts.ArcRendererConfig(
                               arcWidth: 50,
                               arcRendererDecorators: [
@@ -122,7 +131,7 @@ class _distance_visualizationState extends State<distance_visualization> {
                         child: charts.PieChart(
                           _seriesPieData3,
                           animate: true,
-                          animationDuration: Duration(seconds: 1), //TODO: test different animationDuration
+                          animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                           defaultRenderer: new charts.ArcRendererConfig(
                               arcWidth: 50,
                               arcRendererDecorators: [

@@ -1,0 +1,63 @@
+version: "3"
+services:
+  # Server main parts:
+  # Database server
+  db:
+    image: mysql:5.7
+    env_file:
+      - database.env
+    
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    
+    restart: always
+
+  # add python container here:
+
+  # reverse proxy:
+  traefik:
+    image: traefik:v2.0
+    command: --api.dashboard=true --api.insecure=true --providers.docker
+    restart: always
+    ports:
+      # HTTP / HTTPS ports:
+      - "80:80"
+      - "443:443"
+      # Web UI for health checks:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./static.yml:/etc/traefik/traefik.yml
+      - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
+      - ./acme.json:/etc/traefik/acme/acme.json
+  
+  # Server monitoring:
+  # grafana monitoring solution
+  grafana:
+    image: grafana/grafana:latest
+    env_file:
+      - grafana.env
+    restart: always
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    labels:
+      - traefik.http.routers.grafana.rule=Host("localhost") && PathPrefix("/grafana") # for local testing only!! change to server url later
+
+  # influx db for data storage
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    #ports:
+      #- "8086:8086"
+      #- "2003:2003"
+    volumes:
+      - ./influxdb-data:/var/lib/influxdb
+  
+  # telegraf for collecting data about server health
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    links:
+      - influxdb
+    volumes:
+      - ./telegraf-data/telegraf.conf:/etc/telegraf/telegraf.conf:ro

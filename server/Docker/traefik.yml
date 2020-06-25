@@ -1,0 +1,33 @@
+global:
+    sendAnonymousUsage: false
+
+entryPoints:
+    web:
+        address: ":80"
+    web-secure:
+        address: ":443"
+
+certificateResolvers:
+    sample:
+        acme:
+            email: info@bembel.tech
+            storage: acme.json
+            httpChallenge:
+                entryPoints: web
+
+http:
+    routers:
+        https-redirect:
+            rule: 'HostRegexp(`{any:.*}`)'
+            middleware:
+                - https-redirect
+            services: redirect-all
+        middlewares:
+            https-redirect:
+                redirectscheme:
+                    scheme: https
+        services:
+            redirect-all:
+                LoadBalancer:
+                    servers:
+                        - url: ''

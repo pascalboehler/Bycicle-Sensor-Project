@@ -13,58 +13,99 @@ class map extends StatefulWidget {
 }
 
 class _mapState extends State<map> {
-  Position _position;
+  MapController mapController = MapController();
+  Position _currentPosition;
   String Location;
+  Position LocationMap;
   double _latitude = 51.5;
   double _longitude = -0.09;
   Color _LocationButtonColor = Colors.grey;
+  Color _toggelMapToCenterColor = Colors.grey;
+  bool _toggelMapToCenter;
+  Position _position;
+  StreamSubscription<Position> _positionStreamSubscription;
+  //final List<Position> _positions = <Position>[];
 
-  Future<void> _currentPosition() async {
-    var geolocator = Geolocator();
-    var locationOptions = LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
-
-
-    StreamSubscription<Position> _positionStream = geolocator.getPositionStream(locationOptions).listen(
-            (Position position) {
-          print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());
-          setState(() {
-            Location =  _position.toString();
-            //cut Location String to the needed format,
-            _latitude = double.parse(Location.substring(5,14));
-            _longitude = double.parse(Location.substring(22,29));
-            _position = _position;
-            _LocationButtonColor = Colors.blue; //change Color if location fixed
-          });
-        });
-  }
-
-  Future<void> _getPosition() async {
-    _position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(_position);
-
-    _currentPosition();
+  void _toggleListening() {
+    if (_positionStreamSubscription == null) {
+      const LocationOptions locationOptions =
+      LocationOptions(accuracy: LocationAccuracy.high);
+      final Stream<Position> positionStream =
+      Geolocator().getPositionStream(locationOptions);
+      _positionStreamSubscription = positionStream.listen(
+              (Position position) => setState(() {
+                Location =  position.toString();
+                //cut Location String to the needed format,
+                _latitude = double.parse(Location.substring(5,14));
+                _longitude = double.parse(Location.substring(22,29));
+                _currentPosition = position;
+                _LocationButtonColor = Colors.blue; //change Color if location fixed
+                if (_toggelMapToCenter == true) {
+                  mapController.move(LatLng(_latitude, _longitude), 16);
+                }
+              })
+      );
+      _positionStreamSubscription.pause();
+    }
 
     setState(() {
-      /*Location =  _positionStream.toString();
-      //cut Location String to the needed format,
-      _latitude = double.parse(Location.substring(5,14));
-      _longitude = double.parse(Location.substring(22,29));
-      _position = _position;
-      _LocationButtonColor = Colors.blue;*/
+      if (_positionStreamSubscription.isPaused) {
+        _positionStreamSubscription.resume();
+      } else {
+        _positionStreamSubscription.pause();
+        _LocationButtonColor = Colors.grey;
+      }
     });
+  }
 
+  @override
+  void dispose() {
+    if (_positionStreamSubscription != null) {
+      _positionStreamSubscription.cancel();
+      _positionStreamSubscription = null;
+    }
+
+    super.dispose();
+  }
+  //TODO: follow position
+  @override
+  void didUpdateWidget(map oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (Location != Location) {
+      mapController.move(LatLng(_longitude,_latitude), 10);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<GeolocationStatus>(
+        future: Geolocator().checkGeolocationPermissionStatus(),
+    builder:
+    (BuildContext context, AsyncSnapshot<GeolocationStatus> snapshot) {
+    if (!snapshot.hasData) {
+    return const Center(child: CircularProgressIndicator());
+    }
+
+    if (snapshot.data == GeolocationStatus.denied) {
+    return const PlaceholderWidget('Access to location denied',
+    'Allow access to the location services for this App using the device settings.');
+    }
+
+
     return Stack(
       children: <Widget>[
           FlutterMap(
+          mapController: mapController,
           options: new MapOptions(
-            center: new LatLng(50.1104, 8.68216),
+            center: new LatLng(51.5, -0.09),
             zoom: 13.0,
+            onPositionChanged: (postion, hasGesture) {
+              // print("on position changed ${postion.center.toString()}");
+              // if active you can not zoom or move the map
+              // mapController.move(LatLng(_latitude, _longitude), 10);
+            },
           ),
-          layers: [
+    layers: [
             new TileLayerOptions(
                 urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c']
@@ -92,7 +133,7 @@ class _mapState extends State<map> {
                   new  Container(
                     padding: const EdgeInsets.all(32),
                     child: Container(
-                      child: Icon(Icons.navigation, color: Colors.blue, size: 50.0),
+                      child: Icon(Icons.location_on, color: Colors.blue, size: 50.0),
                     ),
                   ),
                 )
@@ -105,14 +146,26 @@ class _mapState extends State<map> {
           left: 10,
           child: FloatingActionButton(
             child: Icon(Icons.navigation),
-            onPressed: () {
-              print('pressed');
-              /*Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) {
-                return planRoute();
-              }));*/
-            },
+            onPressed: () {},
+            backgroundColor: Colors.grey,
           )
+        ),
+        Positioned(
+          bottom: 80,
+          right: 10,
+          child: FloatingActionButton(
+            child: Icon(Icons.filter_center_focus),
+            backgroundColor: _toggelMapToCenterColor, //change button color if enabled or not
+            onPressed: () {
+              if (_toggelMapToCenter == true) {
+                _toggelMapToCenter = false;
+                _toggelMapToCenterColor = Colors.grey; //change Button color to grey
+              }else {
+                _toggelMapToCenter = true;
+                _toggelMapToCenterColor = Colors.green; //change Button color to green
+              }
+            },
+          ),
         ),
         Positioned(
           bottom: 10,
@@ -120,17 +173,42 @@ class _mapState extends State<map> {
           child: FloatingActionButton(
             child: Icon(Icons.gps_fixed),
             backgroundColor: _LocationButtonColor, //change button color if location fixed
-            onPressed: () async {
-              _getPosition();
-            },
+              onPressed: _toggleListening,
           ),
         ),
         Positioned(
           bottom: 10,
           right: 100,
-          child: Text(_position.toString(), style: TextStyle(color: Colors.white),),
+          child: Text(_currentPosition.toString(), style: TextStyle(color: Colors.black),),
         )
       ],
+     );
+    }
+  );
+  }
+}
+
+class PlaceholderWidget extends StatelessWidget {
+  const PlaceholderWidget(this.title, this.message);
+
+  final String title;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(title,
+              style: const TextStyle(fontSize: 32.0, color: Colors.black54),
+              textAlign: TextAlign.center),
+          Text(message,
+              style: const TextStyle(fontSize: 16.0, color: Colors.black54),
+              textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 }

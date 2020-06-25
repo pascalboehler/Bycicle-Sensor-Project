@@ -15,9 +15,17 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
 
     double maxDistance = 300; // Max Distance to get a static relationship in the chart, maybe it has to change
 
-    Color distanceColor1 = Colors.green ;
+    Color distanceColor = Colors.green ;
     Color distanceColor2 = Colors.green ; //TODO: change color if to close
     Color distanceColor3 = Colors.green ;
+
+    _distanceColor (distance) {
+      if (distance < 150) {
+        return Colors.red;
+      }else {
+        return Colors.green;
+      };
+    }
 
     List<charts.Series<DistanceDataPie, String>> _seriesPieData;
     List<charts.Series<DistanceDataPie, String>> _generateObject(BackgroundCollectingTask bgTask, int sensorNum) {
@@ -26,21 +34,21 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
       switch(sensorNum) {
         case 1:
           pieData = [
-            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, distanceColor1),
+            new DistanceDataPie('Distance1', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0, _distanceColor(bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0,)),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance1 : 0), Colors.transparent),
           ];
           break;
         case 2:
           pieData = [
-            new DistanceDataPie('Distance2', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, distanceColor1),
+            new DistanceDataPie('Distance2', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0, _distanceColor(bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0,)),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance2 : 0), Colors.transparent),
           ];
           break;
         case 3:
           pieData = [
-            new DistanceDataPie('Distance3', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, distanceColor1),
+            new DistanceDataPie('Distance3', bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0, _distanceColor(bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0,)),
             new DistanceDataPie(
                 'rest', maxDistance - (bgTask != null && bgTask.dataList.length != 0 ? bgTask.dataList.last.distance3 : 0), Colors.transparent),
           ];
@@ -124,7 +132,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                     child: charts.PieChart(
                       _generateObject(bgTask, 2), // TODO: Manage colour (red, green)
                       animate: true,
-                      animationDuration: Duration(seconds: 300), //TODO: test different animationDuration
+                      animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
                           arcWidth: 50,
                           arcRendererDecorators: [
@@ -143,7 +151,7 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
                     child: charts.PieChart(
                       _generateObject(bgTask, 3), // TODO: Manage colour (red, green)
                       animate: true,
-                      animationDuration: Duration(seconds: 300), //TODO: test different animationDuration
+                      animationDuration: Duration(milliseconds: 300), //TODO: test different animationDuration
                       defaultRenderer: new charts.ArcRendererConfig(
                           arcWidth: 50,
                           arcRendererDecorators: [

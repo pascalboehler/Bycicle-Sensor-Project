@@ -15,7 +15,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="digiroad"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/digi_road_app_logo">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
