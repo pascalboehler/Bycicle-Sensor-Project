@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about.dart';
+import '../data/LocalCaching.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login.dart';
 import 'settings_user-account.dart';
@@ -62,6 +63,13 @@ class _settingsState extends State<settings> {
             style: TextStyle(color: Colors.blue[500]
               ),
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.import_export),
+            title: Text('Messdaten exportieren'),
+            onTap: () {
+              LocalCaching.exportCSVFile(); // Share the CSV File via share dialog
+            }
           ),
           ListTile(
             leading: Icon(Icons.language),

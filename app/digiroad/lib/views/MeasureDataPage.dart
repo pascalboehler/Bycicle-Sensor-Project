@@ -93,7 +93,8 @@ class _MeasureDataPageState extends State<MeasureDataPage> {
           IconButton(
             icon: Icon(Icons.pause),
             onPressed: () {
-              Navigator.of(context).pop(); // TODO: Stop bgTask here
+              bgTask.cancel(); // tell the sensor to stop sending data and store data to local storage
+              Navigator.of(context).pop();
             },
           )
         ],
