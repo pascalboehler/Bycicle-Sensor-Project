@@ -162,3 +162,10 @@ ipython_config.py
 *.iml
 out
 gen
+
+inspectionProfiles/
+misk.xml
+vcs.xml
+modules.xml
+workspace.xml
+
