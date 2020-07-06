@@ -1,5 +1,12 @@
+# external dependencies
 from flask import Flask
 from flask import jsonify
+from flask import request
+import json
+
+# custom classes:
+from userHandling import *
+from dataHandling import *
 
 app = Flask(__name__)
 
@@ -25,8 +32,13 @@ def login():
 # sign up for service
 @app.route('/auth/signup', methods=['POST'])
 def signup():
+    # get request data from client and convert it to json:
+    req_raw_data = request.data
+    req_data = json.loads(req_raw_data)
+    # write new user to database
+    token = create_user(req_data)
     json_response = {
-        "token": "YOURUNIQUESESSIONTOKEN"
+        "token": token
     }
     return json_response, 200
 
@@ -36,30 +48,8 @@ def signup():
 # get all user data from server (session token needs to be provided as an argument)
 @app.route('/data/userData')
 def user_data():
-    json_response = [
-        {
-            "dataId": 4,
-            "sensor": 1,
-            "distance": 255,
-            "position": {
-                "lon": -73.989308,
-                "lat": 40.741895
-            },
-            "timestamp": 120520201455,
-            "tripNumber": 4
-        },
-        {
-            "dataId": 5,
-            "sensor": 1,
-            "distance": 255,
-            "position": {
-                "lon": -73.989308,
-                "lat": 40.741895
-            },
-            "timestamp": 120520201455,
-            "tripNumber": 4
-        },
-    ]
+    req_data = json.loads(request.data)
+    json_response = get_user_data(req_data['token'])
 
     return jsonify(json_response), 200
 
@@ -67,19 +57,8 @@ def user_data():
 # get data from specific trip (session token and trip id need to provided as arguments)
 @app.route('/data/userData/tripData')
 def trip_data():
-    json_response = [
-        {
-            "dataId": 4,
-            "sensor": 1,
-            "distance": 255,
-            "position": {
-                "lon": -73.989308,
-                "lat": 40.741895
-            },
-            "timestamp": 120520201455,
-            "tripNumber": 4
-        }
-    ]
+    req_data = json.loads(request.data)
+    json_response = get_trip_data(req_data['token'])
     return jsonify(json_response), 200
 
 
@@ -97,7 +76,9 @@ def trips():
 
 # create a new trip on server (session token needs to be provided)
 @app.route('/data/userData/trip', methods=['POST'])
-def create_trip():
+def create_trip_data():
+    req_data = json.loads(request.data)
+    create_trip(req_data)
     json_response = {
         "success": True
     }
