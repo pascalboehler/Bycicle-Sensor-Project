@@ -17,4 +17,5 @@ If you like to help us achieving our mission, to make the world a saver place, y
 The Digitechnikum is a project founded by the Polytechnische Gesellschaft Frankfurt. The project tries to empower young people like us, to create projects thats help to improve our society, with the power of creating code and using modern technologies.
 Further informations can be found at: [digitechnikum.de](https://digitechnikum.de)
 
-
+## Support note
+This project is deprecated. We will no longer add additional features to it or fix any bugs. If you want to add features to this problem please fork it.
