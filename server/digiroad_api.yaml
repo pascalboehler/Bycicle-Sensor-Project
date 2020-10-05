@@ -1,0 +1,313 @@
+openapi: 3.0.3
+info:
+  title: "DigiRoad API"
+  version: '1.0.0'
+  description: 'This is the API for the DigiRoad project'
+  termsOfService: digiroad.de/termsOfService
+
+  contact:
+    name: DigiRoad Team
+    url: digiroad.de
+    email: admin@digiroad.de
+  license:
+    name: license
+    url: digiroad.de/licence
+
+servers:
+  - url: https://api.digiroad.tech
+    description: Production server
+  - url: http://digiroad.digitechnikum.de
+    description: Testing server
+
+paths:
+
+# user authentification
+  /auth/login:
+    get:
+      description: AUthentificate on server for access to user psecific data and receiving uid  token
+      parameters:
+        - in: body
+          name: user
+          required: true
+          description: User Login informations
+          schema:
+            type: object
+            $ref: '#/components/schemas/userauth'
+              
+      responses:
+        "200":
+          description: succesful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: YOURUNIQUESESSIONTOKEN
+                    
+        "400":
+          description: unsuccessful. wrong password or email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Wrong Password / Wrong email
+                  wrongPassword:
+                    type: boolean
+                    example: true
+                  wrongUsername:
+                    type: boolean
+                    example: false
+    
+  /auth/signup:
+    post:
+      description: Sign up with new account for service
+      parameters:
+       - in: body
+         name: user
+         required: true
+         description: User dataset for signing up new user
+         schema:
+           type: object
+           $ref: '#/components/schemas/signup_account'
+
+      responses:
+         "200":
+           description: User was succesfully created
+           content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: YOURUNIQUESESSIONTOKEN
+         "400":
+           description: User already exists
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: string
+                     example: User already exists please login instead!
+
+# Get data from server      
+  /data/userData:
+    description: Get user specific dataset for statistics
+    get:
+      parameters:
+        - in: body
+          name: userId
+          required: true
+          description: UserId for authentification via server, uid will be received after login request
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                example: SESSIONTOKENRECEIVEDFROMSERVER
+
+      responses:
+        "200":
+          description: Dataset exists, returning dataset
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DistanceData'
+
+  /data/userData/tripData:
+    description: Get user specific dataset for statistics for single trip
+    get:
+      parameters:
+        - in: body
+          name: token
+          required: true
+          description: UserId for authentification via server, uid will be received after login request
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                example: YOURUNIQUESESSIONTOKEN
+              tripNumber:
+                type: integer
+                example: 4
+
+      responses:
+        "200":
+          description: Dataset exists, returning dataset
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DistanceData'
+
+  /data/userData/trips:
+    description: Get all trips user made
+    get:
+      parameters:
+        - in: body
+          name: token
+          required: true
+          description: session token for authentification via sevrer, will be received while login challenge
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                example: YOURUNIQUESESSIONTOKEN
+
+      responses:
+        "200":
+          description: Dataset with trip data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/trip'
+
+# Send data to server
+  /data/userData/trip:
+    description: Send new trip to server
+    post:
+      parameters:
+        - in: body
+          name: tripData
+          required: true
+          description: Trip data with name, id and dataset
+          schema:
+            type: object
+            $ref: '#/components/schemas/tripData'
+      responses:
+        "200":
+          description: succesfully wrote data to server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+
+        "400":
+          description: error while writing data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error writing data
+
+components:
+  schemas:
+    userauth:
+       description: Logincredentialset for authentification
+       properties:
+         username:
+           type: string
+           example: mmustermann
+         user_password_hash:
+           type: string
+           example: SHA256HASH
+           
+    signup_account:
+      description: Signup information
+      properties:
+        username:
+          type: string
+          example: mmustermann
+        user_password_hash:
+          type: string
+          example: SHA256HASH
+        joindate:
+          type: string
+          example: 21052020
+    
+    useraccount:
+      description: Informationen about Useraccount
+      properties:
+        userId:
+          type: integer
+          example: 4
+
+        username:
+          type: string
+          example: Musterman
+
+        user_passwort_hash:
+          type: string
+          example: SHA256HASH
+
+        joindate:
+          type: string
+          example: 21052020
+
+    DistanceData:
+      description: Data about saved Distance data
+      properties:
+        dataId:
+          type: integer
+          example: 4
+
+        sensor:
+          type: integer
+          example: 1 # position of sensor (1: left, 2: right, 3: back)
+
+        distance:
+          type: integer
+          example: 255
+
+        position: # gps postition
+          type: object
+          properties:
+            lon:
+              type: string
+              example: -73.989308
+            lat:
+              type: string
+              example: 40.741895
+
+        timestamp: # time recorded
+          type: string
+          example: 120520201455
+
+        tripNumber: # number of recorded trip (for trip specific validation)
+          type: string
+          example: 4
+
+    trip:
+      description: Dataset that includes information about specific trip the user recorded
+      properties:
+        tripId:
+          type: integer
+          example: 4
+        tripName:
+          type: string
+          example: Biketour
+
+    tripData:
+      description: Dataset that includes information about specific trip the user recorded
+      properties:
+        tripId:
+          type: integer
+          example: 4
+        tripName:
+          type: string
+          example: Biketour
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DistanceData'

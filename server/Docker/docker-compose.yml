@@ -11,14 +11,28 @@ services:
       - ./mysql_data:/var/lib/mysql
     
     restart: always
+    labels:
+      - traefik.enable=false
 
   # add python container here:
-
+  digiroad_server:
+    image: pboehler/digiroad:testing
+    restart: always
+    labels: 
+      - traefik.http.routers.digiroad_api.rule=Host("digiroad.digitechnikum.de")
+      #- traefik.port=5000
+      - traefik.http.services.digiroad_api.loadbalancer.server.port=5000
+      - traefik.http.routers.digiroad_api.tls=true
+      - traefik.http.routers.digiroad_api.tls.certResolver=default
+  
   # reverse proxy:
   traefik:
     image: traefik:v2.0
     command: --api.dashboard=true --api.insecure=true --providers.docker
     restart: always
+    depends_on: 
+      - digiroad_server
+      - grafana
     ports:
       # HTTP / HTTPS ports:
       - "80:80"
@@ -41,7 +55,8 @@ services:
     volumes:
       - ./grafana-data:/var/lib/grafana
     labels:
-      - traefik.http.routers.grafana.rule=Host("localhost") && PathPrefix("/grafana") # for local testing only!! change to server url later
+      - traefik.http.routers.grafana.rule=Host("grafana.digiroad.digitechnikum.de") # for local testing only!! change to server url later
+      - traefik.port=3000
 
   # influx db for data storage
   influxdb:
@@ -52,6 +67,7 @@ services:
       #- "2003:2003"
     volumes:
       - ./influxdb-data:/var/lib/influxdb
+      - traefik.enable=false
   
   # telegraf for collecting data about server health
   telegraf:
@@ -61,3 +77,4 @@ services:
       - influxdb
     volumes:
       - ./telegraf-data/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - traefik.enable=false
