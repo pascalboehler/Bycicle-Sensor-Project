@@ -3,6 +3,7 @@
   Date created: 16.01.2020
   last editing: 21.02.2020 
 */
+
 #include "BluetoothSerial.h"
 BluetoothSerial SerialBT;
 
@@ -132,49 +133,43 @@ void loop() {
 }
 
 void playSoundAndLight1(int distance1) {
-  //Serial.println("EXEC");
   if (distance1 <= 150) {
-    //Serial.println("EXEC2");
-    //tone (piezoPin, 2000);
+    tone(piezoPin, 2000);
     digitalWrite(led1, HIGH);
-    delay (distance1 * 3);
-    //noTone (piezoPin);
+    delay(distance1 * 3);
+    noTone(piezoPin);
     digitalWrite(led1, LOW);
-    delay (distance1 * 3);
+    delay(distance1 * 3);
   } // if not
   else {
-    //noTone (8);
+    noTone(piezoPin);
   }
 }
 
 void playSoundAndLight2(int distance2) {
-  //Serial.println("EXEC");
   if (distance2 <= 150) {
-    //Serial.println("EXEC2");
-    //tone (piezoPin, 2000);
+    tone(piezoPin, 2000);
     digitalWrite(led2, HIGH);
     delay (distance2 * 3);
-    //noTone (piezoPin);
+    noTone(piezoPin);
     digitalWrite(led2, LOW);
     delay (distance2 * 3);
   } // if not
   else {
-    //noTone (8);
+    noTone(piezoPin);
   }
 }
 
 void playSoundAndLight3(int distance3) {
-  //Serial.println("EXEC");
   if (distance3 <= 150) {
-    //Serial.println("EXEC2");
-    //tone (piezoPin, 2000);
+    tone(piezoPin, 2000);
     digitalWrite(led3, HIGH);
-    delay (distance3 * 3);
-    //noTone (piezoPin);
+    delay(distance3 * 3);
+    noTone(piezoPin);
     digitalWrite(led3, LOW);
     delay (distance3 * 3);
   } // if not
   else {
-    //noTone (8);
+    noTone(piezoPin);
   }
 }
